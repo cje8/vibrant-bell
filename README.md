@@ -34,11 +34,12 @@ curve drawn on a picture of nuclei.
    An instanton is a stationary path of that action.  It is not the MEP, and
    it is not Schrödinger evolution.  The Euclidean evaluator in this package
    returns nuclear `S = ∫ dτ [½ m(q) (dq/dτ)² + (V(q) − V₀)]` for a
-   caller-supplied `V`, energy origin `V₀`, and a mass vector at each image.
-   A Jacobi angle does not have a constant Cartesian mass.  Without `V₀`, a
-   constant shift of `V` would change `S` by `V₀ × τ` and could not be
-   compared to an instanton.  The evaluator does not return `S/ℏ`, and it
-   does not invent `V`.
+   caller-supplied `V`, energy origin `V₀`, a mass vector at each image, and
+   one imaginary-time width per interval.  A uniform `Δτ` is not a thermal
+   instanton: this evaluator does not impose `q(0)=q(βℏ)`.  A Jacobi angle
+   does not have a constant Cartesian mass.  Without `V₀`, a constant shift
+   of `V` would change `S` by `V₀ × τ`.  The evaluator does not return
+   `S/ℏ`, and it does not invent `V`.
 5. **A specified pulse and asymptotic projectors.**
    Photodissociation yields a channel-resolved flux or S-matrix.  A “dominant
    tube” can be read off afterwards from the probability current.  It is an
@@ -68,7 +69,8 @@ compatibility is not a measurement.
 
 **Not derived here.**  The literature threshold quoted for
 `CO₂ → C(³P) + O₂(X ³Σg⁻)` is **11.44 eV**.  This repository does not
-recompute that thermochemistry.
+recompute that thermochemistry, and it does not subtract `hc/λ` from
+11.44 eV.  Those numbers do not share a derived energy zero here.
 
 **Ground-state PES landmarks (San Vicente Veliz / Koner et al., 2021).**  On
 the ground `¹A′` surface, a linear OOC minimum lies about **7.37 eV** above
@@ -89,9 +91,10 @@ linear O–C–O (X ¹Σg⁺)
   → [C(³P) ⊗ O₂(X ³Σg⁻)]S=0
 ```
 
-concatenates ground-state isomers with a VUV product *assignment*.  It is a
-candidate tube one might later test with a global diabatic wavepacket.  It is
-not an observed trajectory, and it is not uniquely selected by a
+concatenates frames from different ledgers.  Linear OCO and collinear COO
+are ground-state PES landmarks; cyclic CO₂ is conjecture; `C + O₂` is an
+inferred photodissociation assignment.  None of those frames is an observed
+trajectory, and the concatenation is not uniquely selected by a
 representation-independent action principle.
 
 ## Reproduce the checks

@@ -52,41 +52,50 @@ def discrete_euclidean_action(
     path: Sequence[Sequence[float]],
     potentials: Sequence[float],
     masses: Sequence[Sequence[float]],
-    delta_tau: float,
+    delta_tau: Sequence[float],
     potential_origin: float,
 ) -> float:
-    """Evaluate a trapezoidal, fixed-time discretization of Euclidean action.
+    """Evaluate a trapezoidal Euclidean action on a supplied nuclear path.
 
     Returns the nuclear action
 
         S = ∫ dτ [½ m(q) (dq/dτ)² + (V(q) − V₀)]
 
-    not ``S/ℏ`` and not a Hilbert-space geometric length.  ``masses`` is one
-    positive mass vector per image, because a Jacobi angle does not have a
-    constant Cartesian mass.  Interval kinetic energy uses the average of the
-    two endpoint mass vectors.  ``potential_origin`` is the energy zero
-    ``V₀``; without it a constant shift in ``V`` would change ``S`` by
-    ``V₀ × τ`` and could not be compared to an instanton.  The caller must
-    supply ``V``.  This does not locate an instanton or include electronic
-    transitions.
+    not ``S/ℏ`` and not a Hilbert-space geometric length.  ``delta_tau`` is
+    one positive imaginary-time width per interval, because a uniform step
+    does not enforce the periodic boundary of a thermal instanton.  This
+    evaluator does not impose ``q(0)=q(βℏ)`` and therefore does not locate
+    an instanton.  ``masses`` is one positive mass vector per image, because
+    a Jacobi angle does not have a constant Cartesian mass.  Interval kinetic
+    energy uses the average of the two endpoint mass vectors.
+    ``potential_origin`` is the energy zero ``V₀``; without it a constant
+    shift in ``V`` would change ``S`` by ``V₀ × τ``.  The caller must supply
+    ``V``.  Electronic transitions are not included.
     """
 
     mass_table = _validate_path(path, masses)
+    n_intervals = len(path) - 1
+    if isinstance(delta_tau, (str, bytes)) or not isinstance(delta_tau, Sequence):
+        raise ValueError("one positive delta_tau is required per path interval")
+    if len(delta_tau) != n_intervals:
+        raise ValueError("one positive delta_tau is required per path interval")
+    steps = tuple(float(step) for step in delta_tau)
+    if any(not math.isfinite(step) or step <= 0.0 for step in steps):
+        raise ValueError("delta_tau must be positive")
     if len(potentials) != len(path):
         raise ValueError("one potential value is required per path image")
     if any(not _is_finite_number(value) for value in potentials):
         raise ValueError("potential values must be finite")
-    if not math.isfinite(delta_tau) or delta_tau <= 0.0:
-        raise ValueError("delta_tau must be positive")
     if not _is_finite_number(potential_origin):
         raise ValueError("potential_origin must be finite")
 
     action = 0.0
     for index, (left, right) in enumerate(zip(path, path[1:])):
+        step = steps[index]
         mass_left = mass_table[index]
         mass_right = mass_table[index + 1]
         velocity_squared = sum(
-            0.5 * (m_left + m_right) * ((q_right - q_left) / delta_tau) ** 2
+            0.5 * (m_left + m_right) * ((q_right - q_left) / step) ** 2
             for m_left, m_right, q_left, q_right in zip(
                 mass_left, mass_right, left, right, strict=True
             )
@@ -96,7 +105,7 @@ def discrete_euclidean_action(
             (potentials[index] - potential_origin)
             + (potentials[index + 1] - potential_origin)
         )
-        action += (kinetic + potential) * delta_tau
+        action += (kinetic + potential) * step
     return action
 
 

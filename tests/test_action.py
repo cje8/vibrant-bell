@@ -9,7 +9,7 @@ class ActionTests(unittest.TestCase):
             path=((0.0,), (1.0,), (2.0,)),
             potentials=(0.0, 0.0, 0.0),
             masses=((2.0,), (2.0,), (2.0,)),
-            delta_tau=1.0,
+            delta_tau=(1.0, 1.0),
             potential_origin=0.0,
         )
         self.assertAlmostEqual(action, 2.0)
@@ -19,7 +19,7 @@ class ActionTests(unittest.TestCase):
             path=((0.0,), (0.0,)),
             potentials=(1.0, 3.0),
             masses=((1.0,), (1.0,)),
-            delta_tau=0.5,
+            delta_tau=(0.5,),
             potential_origin=0.0,
         )
         self.assertAlmostEqual(action, 1.0)
@@ -28,7 +28,7 @@ class ActionTests(unittest.TestCase):
         kwargs = dict(
             path=((0.0,), (1.0,), (2.0,)),
             masses=((2.0,), (2.0,), (2.0,)),
-            delta_tau=1.0,
+            delta_tau=(1.0, 1.0),
         )
         unshifted = discrete_euclidean_action(
             potentials=(1.0, 1.0, 1.0),
@@ -47,7 +47,7 @@ class ActionTests(unittest.TestCase):
         kwargs = dict(
             path=((0.0,), (1.0,)),
             masses=((2.0,), (2.0,)),
-            delta_tau=1.0,
+            delta_tau=(1.0,),
             potential_origin=0.0,
         )
         low = discrete_euclidean_action(potentials=(0.0, 0.0), **kwargs)
@@ -59,7 +59,7 @@ class ActionTests(unittest.TestCase):
             path=((0.0,), (1.0,)),
             potentials=(0.0, 0.0),
             masses=((1.0,), (3.0,)),
-            delta_tau=1.0,
+            delta_tau=(1.0,),
             potential_origin=0.0,
         )
         self.assertAlmostEqual(action, 1.0)
@@ -70,7 +70,7 @@ class ActionTests(unittest.TestCase):
                 ((0.0,), (1.0,)),
                 (0.0, 0.0),
                 (1.0, 1.0),
-                1.0,
+                (1.0,),
                 0.0,
             )
 
@@ -80,9 +80,39 @@ class ActionTests(unittest.TestCase):
                 ((0.0,), (1.0,)),
                 (0.0, 0.0),
                 ((1.0, 1.0), (1.0, 1.0)),
+                (1.0,),
+                0.0,
+            )
+
+    def test_scalar_time_step_is_rejected(self):
+        with self.assertRaises(ValueError):
+            discrete_euclidean_action(
+                ((0.0,), (1.0,)),
+                (0.0, 0.0),
+                ((1.0,), (1.0,)),
                 1.0,
                 0.0,
             )
+
+    def test_wrong_number_of_time_steps_is_rejected(self):
+        with self.assertRaises(ValueError):
+            discrete_euclidean_action(
+                ((0.0,), (1.0,), (2.0,)),
+                (0.0, 0.0, 0.0),
+                ((1.0,), (1.0,), (1.0,)),
+                (1.0,),
+                0.0,
+            )
+
+    def test_uneven_time_steps_are_accepted(self):
+        action = discrete_euclidean_action(
+            path=((0.0,), (0.0,), (0.0,)),
+            potentials=(0.0, 2.0, 2.0),
+            masses=((1.0,), (1.0,), (1.0,)),
+            delta_tau=(1.0, 3.0),
+            potential_origin=0.0,
+        )
+        self.assertAlmostEqual(action, 1.0 + 6.0)
 
     def test_non_finite_step_is_rejected(self):
         with self.assertRaises(ValueError):
@@ -90,7 +120,7 @@ class ActionTests(unittest.TestCase):
                 ((0.0,), (1.0,)),
                 (0.0, 0.0),
                 ((1.0,), (1.0,)),
-                float("nan"),
+                (float("nan"),),
                 0.0,
             )
 
@@ -100,7 +130,7 @@ class ActionTests(unittest.TestCase):
                 ((0.0,), (1.0,)),
                 (0.0, 0.0),
                 ((1.0,), (1.0,)),
-                1.0,
+                (1.0,),
                 float("nan"),
             )
 
@@ -110,7 +140,7 @@ class ActionTests(unittest.TestCase):
                 ((float("nan"),), (1.0,)),
                 (0.0, 0.0),
                 ((1.0,), (1.0,)),
-                1.0,
+                (1.0,),
                 0.0,
             )
 
@@ -120,7 +150,7 @@ class ActionTests(unittest.TestCase):
                 ((0.0,), (1.0,)),
                 (0.0, float("inf")),
                 ((1.0,), (1.0,)),
-                1.0,
+                (1.0,),
                 0.0,
             )
 

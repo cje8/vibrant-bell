@@ -42,6 +42,8 @@ class ExperimentLedger:
     observed_vuv_long_nm: float
     observed_photon_energy_high_ev: float
     observed_photon_energy_low_ev: float
+    photon_energy_zero: str
+    photon_energy_compared_to_literature_threshold: str
 
 
 @dataclass(frozen=True)
@@ -50,6 +52,7 @@ class ThermochemistryLedger:
 
     literature_threshold_ev: float
     derived_here: bool
+    energy_zero: str
 
 
 @dataclass(frozen=True)
@@ -63,12 +66,21 @@ class GroundStatePESLedger:
 
 
 @dataclass(frozen=True)
+class NuclearTubeStep:
+    """One cartoon frame, tagged with the ledger it was taken from."""
+
+    description: str
+    source_ledger: str
+    observed: bool
+
+
+@dataclass(frozen=True)
 class NuclearTubeConjecture:
     """A cartoon that concatenates different physical objects."""
 
     observed: bool
     status: str
-    sequence: tuple[str, ...]
+    sequence: tuple[NuclearTubeStep, ...]
 
 
 @dataclass(frozen=True)
@@ -122,10 +134,16 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
             observed_vuv_long_nm=long_nm,
             observed_photon_energy_high_ev=photon_energy_ev(short_nm),
             observed_photon_energy_low_ev=photon_energy_ev(long_nm),
+            photon_energy_zero="vacuum photon energy hc/λ, not a molecular energy zero",
+            photon_energy_compared_to_literature_threshold=(
+                "not subtracted here: hc/λ and the 11.44 eV literature "
+                "threshold do not share a derived energy zero in this package"
+            ),
         ),
         thermochemistry=ThermochemistryLedger(
             literature_threshold_ev=11.44,
             derived_here=False,
+            energy_zero="not specified in this repository",
         ),
         ground_state_pes=GroundStatePESLedger(
             linear_ooc_minimum_ev_above_oco=7.37,
@@ -140,11 +158,31 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
                 "VUV photodissociation product assignment"
             ),
             sequence=(
-                "linear O-C-O (X 1Sigma_g+)",
-                "strongly bent OCO",
-                "cyclic c-CO2 (1A1)",
-                "collinear C-O-O (1Sigma+)",
-                "separated C + O2",
+                NuclearTubeStep(
+                    description="linear O-C-O (X 1Sigma_g+)",
+                    source_ledger="ground_state_pes",
+                    observed=False,
+                ),
+                NuclearTubeStep(
+                    description="strongly bent OCO",
+                    source_ledger="conjecture",
+                    observed=False,
+                ),
+                NuclearTubeStep(
+                    description="cyclic c-CO2 (1A1)",
+                    source_ledger="conjecture",
+                    observed=False,
+                ),
+                NuclearTubeStep(
+                    description="collinear C-O-O (1Sigma+)",
+                    source_ledger="ground_state_pes",
+                    observed=False,
+                ),
+                NuclearTubeStep(
+                    description="separated C + O2",
+                    source_ledger="experiment_inferred_coproduct",
+                    observed=False,
+                ),
             ),
         ),
         problem=ProblemContract(
@@ -162,6 +200,7 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
             ),
             uncomputable_with_this_package=(
                 "photodissociation branching ratio",
+                "instanton: this evaluator does not impose q(0)=q(beta hbar)",
                 "instanton without a supplied potential and energy origin",
                 "Schrodinger orbit from a nuclear cartoon",
                 "Anandan-Aharonov Hamiltonian orbit length from two endpoint rays",

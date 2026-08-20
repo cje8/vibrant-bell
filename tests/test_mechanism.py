@@ -7,6 +7,7 @@ from co2_path import (
     ExperimentLedger,
     GroundStatePESLedger,
     NuclearTubeConjecture,
+    NuclearTubeStep,
     ProblemContract,
     ThermochemistryLedger,
     neutral_atomic_carbon_channel,
@@ -54,7 +55,6 @@ class ChannelEvidenceTests(unittest.TestCase):
 
     def test_observed_photon_energies_are_hc_over_lambda(self):
         experiment = neutral_atomic_carbon_channel().experiment
-        threshold = neutral_atomic_carbon_channel().thermochemistry.literature_threshold_ev
         self.assertAlmostEqual(
             experiment.observed_photon_energy_high_ev,
             photon_energy_ev(experiment.observed_vuv_short_nm),
@@ -63,7 +63,8 @@ class ChannelEvidenceTests(unittest.TestCase):
             experiment.observed_photon_energy_low_ev,
             photon_energy_ev(experiment.observed_vuv_long_nm),
         )
-        self.assertGreater(experiment.observed_photon_energy_low_ev, threshold)
+        self.assertIn("not subtracted", experiment.photon_energy_compared_to_literature_threshold)
+        self.assertIn("vacuum photon", experiment.photon_energy_zero)
         self.assertGreater(
             experiment.observed_photon_energy_high_ev,
             experiment.observed_photon_energy_low_ev,
@@ -75,6 +76,7 @@ class ChannelEvidenceTests(unittest.TestCase):
         thermochemistry = neutral_atomic_carbon_channel().thermochemistry
         self.assertEqual(thermochemistry.literature_threshold_ev, 11.44)
         self.assertFalse(thermochemistry.derived_here)
+        self.assertIn("not specified", thermochemistry.energy_zero)
 
     def test_oco_ooc_landmarks_are_ground_state_o_plus_co_points(self):
         pes = neutral_atomic_carbon_channel().ground_state_pes
@@ -90,6 +92,12 @@ class ChannelEvidenceTests(unittest.TestCase):
     def test_nuclear_tube_is_not_on_the_experiment_ledger(self):
         evidence = neutral_atomic_carbon_channel()
         self.assertNotEqual(evidence.nuclear_tube.sequence, ())
+        self.assertTrue(all(isinstance(step, NuclearTubeStep) for step in evidence.nuclear_tube.sequence))
+        self.assertTrue(all(not step.observed for step in evidence.nuclear_tube.sequence))
+        sources = {step.source_ledger for step in evidence.nuclear_tube.sequence}
+        self.assertIn("conjecture", sources)
+        self.assertIn("ground_state_pes", sources)
+        self.assertIn("experiment_inferred_coproduct", sources)
         self.assertNotIn("cyclic", evidence.experiment.detected_fragment)
         self.assertNotIn("OOC", evidence.experiment.inferred_coproduct)
 
@@ -101,6 +109,7 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertIn("origin", joined)
         self.assertIn("orbit", joined)
         self.assertIn("anandan", joined)
+        self.assertIn("q(0)=q(beta hbar)", joined)
 
     def test_citations_are_bound_to_what_they_warrant(self):
         evidence = neutral_atomic_carbon_channel()
