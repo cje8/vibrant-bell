@@ -1,14 +1,16 @@
 """Geometry of normalized pure-state rays.
 
 These functions construct a projective-Hilbert-space geodesic.  They do not
-claim that the physical CO2 Hamiltonian generates that geodesic.
+claim that the physical CO2 Hamiltonian generates that geodesic.  The
+Anandan–Aharonov length of a Hamiltonian orbit is a different number: the
+time integral of energy uncertainty along that orbit.
 """
 
 from __future__ import annotations
 
 import cmath
 import math
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 
 State = tuple[complex, ...]
 
@@ -85,3 +87,29 @@ def geodesic_state(
         for start_value, perpendicular_value in zip(start, perpendicular, strict=True)
     )
     return normalize(point)
+
+
+def anandan_aharonov_length(
+    energy_uncertainties: Sequence[float],
+    delta_t: float,
+) -> float:
+    """Return ``(2/ħ) ∫ ΔE(t) dt`` for a supplied energy-uncertainty series.
+
+    Units are ``ħ = 1``.  ``energy_uncertainties`` are ``ΔE(t)`` samples along
+    a Hamiltonian orbit, not Fubini–Study distances between endpoint rays.
+    Two rays alone do not determine this length.  The Fubini–Study geodesic
+    distance is a lower bound on every such orbit length.
+    """
+
+    values = tuple(float(value) for value in energy_uncertainties)
+    if len(values) < 2:
+        raise ValueError("an orbit requires at least two energy-uncertainty samples")
+    if any(not math.isfinite(value) or value < 0.0 for value in values):
+        raise ValueError("energy uncertainties must be finite and non-negative")
+    if not math.isfinite(delta_t) or delta_t <= 0.0:
+        raise ValueError("delta_t must be positive")
+
+    integral = 0.0
+    for left, right in zip(values, values[1:]):
+        integral += 0.5 * (left + right) * delta_t
+    return 2.0 * integral

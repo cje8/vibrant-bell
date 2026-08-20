@@ -32,6 +32,12 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertTrue(
             any("unique" in question for question in evidence.problem.ill_posed_questions)
         )
+        self.assertTrue(
+            any(
+                "field-free" in question
+                for question in evidence.problem.ill_posed_questions
+            )
+        )
 
     def test_experiment_detected_carbon_and_inferred_oxygen(self):
         experiment = neutral_atomic_carbon_channel().experiment
@@ -94,6 +100,7 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertIn("branching", joined)
         self.assertIn("origin", joined)
         self.assertIn("orbit", joined)
+        self.assertIn("anandan", joined)
 
     def test_citations_are_bound_to_what_they_warrant(self):
         evidence = neutral_atomic_carbon_channel()
@@ -103,6 +110,7 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertIn("O+CO", by_doi["10.1039/d1cp01101d"])
         self.assertIn("not a C+O2 flux", by_doi["10.1063/1.4808369"])
         self.assertIn("101.5-107.2 nm", by_doi["10.1063/1.4808369"])
+        self.assertIn("energy uncertainty", by_doi["10.1103/PhysRevLett.65.1697"])
         self.assertNotIn("10.1039/d1cp00369g", by_doi)
         self.assertTrue(all(isinstance(item, Citation) for item in evidence.references))
 

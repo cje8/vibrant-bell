@@ -15,13 +15,17 @@ a unique “minimum-action path” appears to exist when it does not.
 The isolated three-atom problem is a Hamiltonian on a Hilbert space, not a
 curve drawn on a picture of nuclei.
 
-1. **Specified Hamiltonian and initial ray.**
-   `|\Psi(t)\rangle = exp(-i Ĥ t / ℏ) |\Psi(0)\rangle`.
-   This is unique.  It is not found by minimizing an action over competing
-   nuclear cartoons.
+1. **Specified Hamiltonian, pulse, and initial ray.**
+   Field-free evolution `|\Psi(t)\rangle = exp(-i Ĥ t / ℏ) |\Psi(0)\rangle`
+   is unique for that Ĥ, but photodissociation is not field-free.  A VUV
+   pulse is an additional interaction.  Neither object is found by
+   minimizing an action over competing nuclear cartoons.
 2. **Projective geometry of two rays.**
    `distance = acos(|⟨initial|final⟩|)`.
-   This is a Fubini–Study geodesic.  It ignores Ĥ.
+   This is a Fubini–Study geodesic.  It ignores Ĥ.  The Anandan–Aharonov
+   length of a Hamiltonian orbit is `(2/ℏ) ∫ ΔE(t) dt` along that orbit.
+   Two endpoint rays do not determine it; the geodesic is only a lower
+   bound.
 3. **One Born–Oppenheimer surface.**
    A mass-weighted steepest-descent curve (MEP/IRC) is defined only after a
    single electronic state and a nuclear coordinate chart are chosen.  It
@@ -29,19 +33,22 @@ curve drawn on a picture of nuclei.
 4. **A specified action at a specified energy or temperature.**
    An instanton is a stationary path of that action.  It is not the MEP, and
    it is not Schrödinger evolution.  The Euclidean evaluator in this package
-   returns nuclear `S = ∫ dτ [½ m (dq/dτ)² + (V(q) − V₀)]` for a
-   caller-supplied `V` and energy origin `V₀`.  Without `V₀`, a constant
-   shift of `V` would change `S` by `V₀ × τ` and could not be compared to an
-   instanton.  The evaluator does not return `S/ℏ`, and it does not invent
-   `V`.
+   returns nuclear `S = ∫ dτ [½ m(q) (dq/dτ)² + (V(q) − V₀)]` for a
+   caller-supplied `V`, energy origin `V₀`, and a mass vector at each image.
+   A Jacobi angle does not have a constant Cartesian mass.  Without `V₀`, a
+   constant shift of `V` would change `S` by `V₀ × τ` and could not be
+   compared to an instanton.  The evaluator does not return `S/ℏ`, and it
+   does not invent `V`.
 5. **A specified pulse and asymptotic projectors.**
    Photodissociation yields a channel-resolved flux or S-matrix.  A “dominant
    tube” can be read off afterwards from the probability current.  It is an
    output, not an input.
 
-The package implements (2) and an evaluator for a user-supplied discretization
-of (4).  It cannot compute a photodissociation branching ratio, an instanton
-without `V`, or a Schrödinger orbit from a nuclear cartoon.
+The package implements (2), an evaluator for a user-supplied discretization
+of (4), and the Anandan–Aharonov length of a supplied `ΔE(t)` series.  Two
+endpoint rays do not determine that length.  The package cannot compute a
+photodissociation branching ratio, an instanton without `V`, or a
+Schrödinger orbit from a nuclear cartoon.
 
 ## What is known, kept on separate ledgers
 
@@ -130,5 +137,6 @@ Each DOI is stored with the statement it can actually support.
   Ground `¹A′` OOC minimum and OCO/OOC saddle on the O + CO arrangement.
 - J. Anandan and Y. Aharonov, *Phys. Rev. Lett.* **65**, 1697–1700
   (1990), [doi:10.1103/PhysRevLett.65.1697](https://doi.org/10.1103/PhysRevLett.65.1697).
-  Geometry of quantum evolution; a geodesic between rays is not the
-  Hamiltonian orbit.
+  The Anandan–Aharonov length of a Hamiltonian orbit is the time integral
+  of energy uncertainty.  That is not the Fubini–Study geodesic between
+  two endpoint rays.

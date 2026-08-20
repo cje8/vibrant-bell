@@ -158,11 +158,13 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
             ill_posed_questions=(
                 "unique representation-independent minimum-action path in the full state space",
                 "the nuclear cartoon followed by every reactive wavepacket",
+                "photodissociation as field-free Schrodinger evolution of an isolated molecule",
             ),
             uncomputable_with_this_package=(
                 "photodissociation branching ratio",
                 "instanton without a supplied potential and energy origin",
                 "Schrodinger orbit from a nuclear cartoon",
+                "Anandan-Aharonov Hamiltonian orbit length from two endpoint rays",
             ),
         ),
         scope="isolated neutral gas-phase molecule; atomic carbon product",
@@ -192,8 +194,9 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
             Citation(
                 doi="10.1103/PhysRevLett.65.1697",
                 warrants=(
-                    "Fubini-Study geometry of quantum evolution; a geodesic "
-                    "between rays is not the Hamiltonian orbit"
+                    "the Anandan-Aharonov length of a Hamiltonian orbit is "
+                    "the time integral of energy uncertainty; that is not "
+                    "the Fubini-Study geodesic between two endpoint rays"
                 ),
             ),
         ),
