@@ -39,6 +39,21 @@ class ChannelEvidenceTests(unittest.TestCase):
                 for question in evidence.problem.ill_posed_questions
             )
         )
+        self.assertTrue(
+            any("VMI" in answer for answer in evidence.problem.lu_experiment_answers)
+        )
+        self.assertTrue(
+            any(
+                "geodesic" in question
+                for question in evidence.problem.well_posed_but_not_this_experiment
+            )
+        )
+        self.assertTrue(
+            any(
+                "O+CO" in question and "C+O2" in question
+                for question in evidence.problem.ill_posed_questions
+            )
+        )
 
     def test_experiment_detected_carbon_and_inferred_oxygen(self):
         experiment = neutral_atomic_carbon_channel().experiment
@@ -90,6 +105,8 @@ class ChannelEvidenceTests(unittest.TestCase):
         )
         self.assertIn("O+CO", pes.ooc_nuclear_arrangement)
         self.assertEqual(pes.ooc_electronic_state, "1A'")
+        self.assertEqual(pes.jacobi_arrangement, "O+CO")
+        self.assertFalse(pes.is_c_plus_o2_asymptote)
 
     def test_nuclear_tube_is_not_on_the_experiment_ledger(self):
         evidence = neutral_atomic_carbon_channel()
@@ -100,6 +117,10 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertIn("conjecture", sources)
         self.assertIn("ground_state_pes", sources)
         self.assertIn("experiment_inferred_coproduct", sources)
+        arrangements = {step.jacobi_arrangement for step in evidence.nuclear_tube.sequence}
+        self.assertIn("O+CO", arrangements)
+        self.assertIn("C+O2", arrangements)
+        self.assertIn("unspecified", arrangements)
         self.assertNotIn("cyclic", evidence.experiment.detected_fragment)
         self.assertNotIn("OOC", evidence.experiment.inferred_coproduct)
 

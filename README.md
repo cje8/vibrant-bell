@@ -20,9 +20,10 @@ curve drawn on a picture of nuclei.
    is unique for that Ĥ, but photodissociation is not field-free.  A VUV
    pulse is an additional interaction.  Neither object is found by
    minimizing an action over competing nuclear cartoons.
-2. **Projective geometry of two rays.**
+2. **Projective geometry of two rays in a named finite `Cⁿ`.**
    `distance = acos(|⟨initial|final⟩|)`.
-   This is a Fubini–Study geodesic.  It ignores Ĥ.  The Anandan–Aharonov
+   This is a Fubini–Study geodesic on the space the caller supplied.  That
+   `Cⁿ` is not the CO₂ molecular Hilbert space.  The Anandan–Aharonov
    length of a Hamiltonian orbit is `(2/ℏ) ∫ ΔE(t) dt` along that orbit.
    Two endpoint rays do not determine it, and a uniform time step does not
    specify the orbit.  The geodesic is only a lower bound.
@@ -79,7 +80,8 @@ recompute that thermochemistry, and it does not subtract `hc/λ` from
 the ground `¹A′` surface, a linear OOC minimum lies about **7.37 eV** above
 linear OCO.  The OCO/OOC saddle is about **0.369 eV** above that OOC minimum.
 Those points live on the **O + CO** Jacobi arrangement of the ground surface.
-They are not a measured VUV photodissociation path to `C + O₂`.
+That arrangement is not the `C + O₂` photodissociation asymptote.  They are
+not a measured VUV photodissociation path.
 
 **Scope.**  `C` means an isolated carbon atom.  Graphite or any other solid
 carbon phase is outside the three-atom Hilbert space.
@@ -94,11 +96,15 @@ linear O–C–O (X ¹Σg⁺)
   → [C(³P) ⊗ O₂(X ³Σg⁻)]S=0
 ```
 
-concatenates frames from different ledgers.  Linear OCO and collinear COO
-are ground-state PES landmarks; cyclic CO₂ is conjecture; `C + O₂` is an
-inferred photodissociation assignment.  None of those frames is an observed
-trajectory, and the concatenation is not uniquely selected by a
-representation-independent action principle.
+concatenates frames from different ledgers **and different Jacobi
+arrangements**.  Linear OCO and collinear COO are ground-state **O + CO**
+landmarks; cyclic CO₂ is conjecture with an unspecified arrangement;
+`C + O₂` is an inferred photodissociation assignment.  None of those frames
+is an observed trajectory, and the concatenation is not uniquely selected by
+a representation-independent action principle.
+
+Lu's experiment answers a VMI carbon-atom yield question.  It does not
+answer a geodesic, an MEP, or an instanton.
 
 ## Reproduce the checks
 

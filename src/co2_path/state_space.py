@@ -39,9 +39,24 @@ def normalize(values: Iterable[complex]) -> State:
     return tuple(value / norm for value in state)
 
 
-def fubini_study_distance(initial: Iterable[complex], final: Iterable[complex]) -> float:
-    """Return ``acos(abs(<initial|final>))`` for normalized endpoint rays."""
+def _require_named_hilbert_space(hilbert_space: str) -> None:
+    if not isinstance(hilbert_space, str) or not hilbert_space.strip():
+        raise ValueError("hilbert_space must name the C^n the rays live in")
+    if hilbert_space.strip() == "CO2":
+        raise ValueError("caller-supplied C^n is not the CO2 molecular Hilbert space")
 
+
+def fubini_study_distance(
+    initial: Iterable[complex], final: Iterable[complex], hilbert_space: str
+) -> float:
+    """Return ``acos(abs(<initial|final>))`` for normalized endpoint rays.
+
+    ``hilbert_space`` names the finite ``C^n`` the caller supplied.  That space
+    is not the CO2 molecular Hilbert space, and this distance is not a
+    photodissociation path.
+    """
+
+    _require_named_hilbert_space(hilbert_space)
     start = normalize(initial)
     end = normalize(final)
     overlap = abs(_inner(start, end))
@@ -49,7 +64,10 @@ def fubini_study_distance(initial: Iterable[complex], final: Iterable[complex]) 
 
 
 def geodesic_state(
-    initial: Iterable[complex], final: Iterable[complex], fraction: float
+    initial: Iterable[complex],
+    final: Iterable[complex],
+    fraction: float,
+    hilbert_space: str,
 ) -> State:
     """Return one shortest-geodesic representative between two pure-state rays.
 
@@ -61,6 +79,7 @@ def geodesic_state(
 
     if not math.isfinite(fraction) or not 0.0 <= fraction <= 1.0:
         raise ValueError("fraction must lie in [0, 1]")
+    _require_named_hilbert_space(hilbert_space)
 
     start = normalize(initial)
     end = normalize(final)
@@ -92,6 +111,7 @@ def geodesic_state(
 def anandan_aharonov_length(
     energy_uncertainties: Sequence[float],
     delta_t: Sequence[float],
+    hilbert_space: str,
 ) -> float:
     """Return ``(2/ħ) ∫ ΔE(t) dt`` for a supplied energy-uncertainty series.
 
@@ -116,6 +136,7 @@ def anandan_aharonov_length(
     steps = tuple(float(step) for step in delta_t)
     if any(not math.isfinite(step) or step <= 0.0 for step in steps):
         raise ValueError("delta_t must be positive")
+    _require_named_hilbert_space(hilbert_space)
 
     integral = 0.0
     for (left, right), step in zip(zip(values, values[1:]), steps, strict=True):
