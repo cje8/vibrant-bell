@@ -6,13 +6,19 @@ import math
 from collections.abc import Iterable, Sequence
 
 
+def _is_finite_number(value: float) -> bool:
+    return math.isfinite(float(value))
+
+
 def _validate_path(path: Sequence[Sequence[float]], masses: Sequence[float]) -> None:
     if len(path) < 2:
         raise ValueError("a path requires at least two images")
-    if not masses or any(not math.isfinite(mass) or mass <= 0.0 for mass in masses):
+    if not masses or any(not _is_finite_number(mass) or mass <= 0.0 for mass in masses):
         raise ValueError("all coordinate masses must be positive")
     if any(len(image) != len(masses) for image in path):
         raise ValueError("every path image must match the mass-vector dimension")
+    if any(not _is_finite_number(coordinate) for image in path for coordinate in image):
+        raise ValueError("path coordinates must be finite")
 
 
 def discrete_euclidean_action(
@@ -32,6 +38,8 @@ def discrete_euclidean_action(
     _validate_path(path, masses)
     if len(potentials) != len(path):
         raise ValueError("one potential value is required per path image")
+    if any(not _is_finite_number(value) for value in potentials):
+        raise ValueError("potential values must be finite")
     if not math.isfinite(delta_tau) or delta_tau <= 0.0:
         raise ValueError("delta_tau must be positive")
 

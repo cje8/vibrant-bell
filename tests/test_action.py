@@ -30,6 +30,19 @@ class ActionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             discrete_euclidean_action(((0.0,), (1.0,)), (0.0, 0.0), (1.0,), float("nan"))
 
+    def test_non_finite_coordinates_are_rejected(self):
+        with self.assertRaises(ValueError):
+            discrete_euclidean_action(
+                ((float("nan"),), (1.0,)),
+                (0.0, 0.0),
+                (1.0,),
+                1.0,
+            )
+
+    def test_non_finite_path_potential_is_rejected(self):
+        with self.assertRaises(ValueError):
+            discrete_euclidean_action(((0.0,), (1.0,)), (0.0, float("inf")), (1.0,), 1.0)
+
     def test_maximum_potential(self):
         self.assertEqual(maximum_potential([-1.0, 2.0, 0.5]), 2.0)
 
