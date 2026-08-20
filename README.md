@@ -29,8 +29,11 @@ curve drawn on a picture of nuclei.
 4. **A specified action at a specified energy or temperature.**
    An instanton is a stationary path of that action.  It is not the MEP, and
    it is not Schrödinger evolution.  The Euclidean evaluator in this package
-   returns nuclear `S = ∫ dτ [½ m (dq/dτ)² + V(q)]` for a caller-supplied
-   `V`.  It does not return `S/ℏ`, and it does not invent `V`.
+   returns nuclear `S = ∫ dτ [½ m (dq/dτ)² + (V(q) − V₀)]` for a
+   caller-supplied `V` and energy origin `V₀`.  Without `V₀`, a constant
+   shift of `V` would change `S` by `V₀ × τ` and could not be compared to an
+   instanton.  The evaluator does not return `S/ℏ`, and it does not invent
+   `V`.
 5. **A specified pulse and asymptotic projectors.**
    Photodissociation yields a channel-resolved flux or S-matrix.  A “dominant
    tube” can be read off afterwards from the probability current.  It is an
@@ -44,16 +47,17 @@ without `V`, or a Schrödinger orbit from a nuclear cartoon.
 
 **Directly detected (Lu et al., 2014).**  Neutral CO₂ irradiated between
 101.5 and 107.2 nm yields `C(³P)`, observed by velocity-map imaging, with a
-reported channel yield of **5 ± 2%**.  Those wavelengths are **12.22 eV** and
-**11.57 eV**.  The experiment measures a carbon-atom product, not a sequence
-of nuclear isomers.
+*reported* channel yield of **5 ± 2%**.  This repository does not reanalyze
+that yield.  Those wavelengths are **12.22 eV** and **11.57 eV**.  The
+experiment measures a carbon-atom product, not a sequence of nuclear isomers.
 
 **Inferred, not imaged.**  Co-product `O₂(X ³Σg⁻)` is assigned from carbon
 kinematics and energy conservation.  Molecular oxygen was not the imaged
 species.
 
 **Not measured.**  Total spin of the fragment pair was not reported.  Two
-triplets *can* couple to `S = 0`; that compatibility is not a measurement.
+triplets *can* couple to `S = 0` by Clebsch–Gordan algebra; that
+compatibility is not a measurement.
 
 **Not derived here.**  The literature threshold quoted for
 `CO₂ → C(³P) + O₂(X ³Σg⁻)` is **11.44 eV**.  This repository does not
@@ -93,9 +97,9 @@ python -m unittest discover -s tests -v
 python -m co2_path
 ```
 
-The CLI prints the separated evidence record.  The fields
-`sequential_nuclear_tube_observed`, `coproduct_directly_detected`,
-`total_spin_measured`, and `literature_threshold_derived_here` are `false`.
+The CLI prints nested ledgers: experiment, thermochemistry, ground-state PES,
+nuclear-tube conjecture, and problem contract.  They are separate objects so
+a VUV carbon-atom detection cannot be read as a ground-state nuclear path.
 
 ## What a defensible calculation still has to specify
 
@@ -119,8 +123,8 @@ Each DOI is stored with the statement it can actually support.
   VMI of `C(³P)` from CO₂ at 101.5–107.2 nm; `O₂` inferred from kinematics.
 - S. Y. Grebenshchikov, *J. Chem. Phys.* **138**, 224106 (2013),
   [doi:10.1063/1.4808369](https://doi.org/10.1063/1.4808369).
-  Singlet valence PESs and a 5×5 diabatic matrix for UV absorption, not a
-  `C + O₂` flux.
+  Singlet valence PESs and a 5×5 diabatic matrix for UV absorption.  That
+  paper is not the 101.5–107.2 nm window and is not a `C + O₂` flux.
 - J. C. San Vicente Veliz et al., *Phys. Chem. Chem. Phys.* **23**, 11251–11263
   (2021), [doi:10.1039/d1cp01101d](https://doi.org/10.1039/d1cp01101d).
   Ground `¹A′` OOC minimum and OCO/OOC saddle on the O + CO arrangement.

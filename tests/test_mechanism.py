@@ -1,74 +1,98 @@
 import math
 import unittest
 
-from co2_path import ChannelEvidence, Citation, neutral_atomic_carbon_channel, photon_energy_ev
+from co2_path import (
+    ChannelEvidence,
+    Citation,
+    ExperimentLedger,
+    GroundStatePESLedger,
+    NuclearTubeConjecture,
+    ProblemContract,
+    ThermochemistryLedger,
+    neutral_atomic_carbon_channel,
+    photon_energy_ev,
+)
 
 
 class ChannelEvidenceTests(unittest.TestCase):
+    def test_ledgers_are_separate_objects(self):
+        evidence = neutral_atomic_carbon_channel()
+        self.assertIsInstance(evidence, ChannelEvidence)
+        self.assertIsInstance(evidence.experiment, ExperimentLedger)
+        self.assertIsInstance(evidence.thermochemistry, ThermochemistryLedger)
+        self.assertIsInstance(evidence.ground_state_pes, GroundStatePESLedger)
+        self.assertIsInstance(evidence.nuclear_tube, NuclearTubeConjecture)
+        self.assertIsInstance(evidence.problem, ProblemContract)
+
     def test_full_state_space_has_no_unique_min_action_path(self):
         evidence = neutral_atomic_carbon_channel()
-        self.assertFalse(evidence.unique_min_action_path_in_full_state_space)
-        self.assertFalse(evidence.sequential_nuclear_tube_observed)
-        self.assertIn("conjecture", evidence.sequential_nuclear_tube_status)
+        self.assertFalse(evidence.problem.unique_min_action_path_in_full_state_space)
+        self.assertFalse(evidence.nuclear_tube.observed)
+        self.assertIn("conjecture", evidence.nuclear_tube.status)
         self.assertTrue(
-            any("unique" in question for question in evidence.ill_posed_questions)
+            any("unique" in question for question in evidence.problem.ill_posed_questions)
         )
 
     def test_experiment_detected_carbon_and_inferred_oxygen(self):
-        evidence = neutral_atomic_carbon_channel()
-        self.assertEqual(evidence.detected_fragment, "C(3P)")
-        self.assertEqual(evidence.inferred_coproduct, "O2(X 3Sigma_g-)")
-        self.assertFalse(evidence.coproduct_directly_detected)
-        self.assertFalse(evidence.total_spin_measured)
-        self.assertTrue(evidence.total_spin_compatible_with_singlet)
-        self.assertEqual(evidence.observed_yield_percent, 5.0)
-        self.assertEqual(evidence.observed_vuv_short_nm, 101.5)
-        self.assertEqual(evidence.observed_vuv_long_nm, 107.2)
-        self.assertNotEqual(evidence.conjectured_nuclear_sequence, ())
-        self.assertIsInstance(evidence, ChannelEvidence)
+        experiment = neutral_atomic_carbon_channel().experiment
+        self.assertEqual(experiment.detected_fragment, "C(3P)")
+        self.assertEqual(experiment.inferred_coproduct, "O2(X 3Sigma_g-)")
+        self.assertFalse(experiment.coproduct_directly_detected)
+        self.assertFalse(experiment.total_spin_measured)
+        self.assertTrue(experiment.total_spin_compatible_with_singlet)
+        self.assertIn("not a measurement", experiment.total_spin_compatibility_source)
+        self.assertEqual(experiment.reported_channel_yield_percent, 5.0)
+        self.assertFalse(experiment.yield_reanalyzed_here)
+        self.assertEqual(experiment.observed_vuv_short_nm, 101.5)
+        self.assertEqual(experiment.observed_vuv_long_nm, 107.2)
 
     def test_observed_photon_energies_are_hc_over_lambda(self):
-        evidence = neutral_atomic_carbon_channel()
+        experiment = neutral_atomic_carbon_channel().experiment
+        threshold = neutral_atomic_carbon_channel().thermochemistry.literature_threshold_ev
         self.assertAlmostEqual(
-            evidence.observed_photon_energy_high_ev,
-            photon_energy_ev(evidence.observed_vuv_short_nm),
+            experiment.observed_photon_energy_high_ev,
+            photon_energy_ev(experiment.observed_vuv_short_nm),
         )
         self.assertAlmostEqual(
-            evidence.observed_photon_energy_low_ev,
-            photon_energy_ev(evidence.observed_vuv_long_nm),
+            experiment.observed_photon_energy_low_ev,
+            photon_energy_ev(experiment.observed_vuv_long_nm),
         )
+        self.assertGreater(experiment.observed_photon_energy_low_ev, threshold)
         self.assertGreater(
-            evidence.observed_photon_energy_low_ev,
-            evidence.literature_threshold_ev,
+            experiment.observed_photon_energy_high_ev,
+            experiment.observed_photon_energy_low_ev,
         )
-        self.assertGreater(
-            evidence.observed_photon_energy_high_ev,
-            evidence.observed_photon_energy_low_ev,
-        )
-        self.assertAlmostEqual(evidence.observed_photon_energy_low_ev, 11.566, places=3)
-        self.assertAlmostEqual(evidence.observed_photon_energy_high_ev, 12.215, places=3)
+        self.assertAlmostEqual(experiment.observed_photon_energy_low_ev, 11.566, places=3)
+        self.assertAlmostEqual(experiment.observed_photon_energy_high_ev, 12.215, places=3)
 
     def test_literature_threshold_is_not_derived_here(self):
-        evidence = neutral_atomic_carbon_channel()
-        self.assertEqual(evidence.literature_threshold_ev, 11.44)
-        self.assertFalse(evidence.literature_threshold_derived_here)
+        thermochemistry = neutral_atomic_carbon_channel().thermochemistry
+        self.assertEqual(thermochemistry.literature_threshold_ev, 11.44)
+        self.assertFalse(thermochemistry.derived_here)
 
     def test_oco_ooc_landmarks_are_ground_state_o_plus_co_points(self):
-        evidence = neutral_atomic_carbon_channel()
-        self.assertEqual(evidence.linear_ooc_minimum_ev_above_oco, 7.37)
-        self.assertEqual(evidence.oco_ooc_barrier_ev_above_ooc, 0.369)
+        pes = neutral_atomic_carbon_channel().ground_state_pes
+        self.assertEqual(pes.linear_ooc_minimum_ev_above_oco, 7.37)
+        self.assertEqual(pes.oco_ooc_barrier_ev_above_ooc, 0.369)
         self.assertLess(
-            evidence.oco_ooc_barrier_ev_above_ooc,
-            evidence.linear_ooc_minimum_ev_above_oco,
+            pes.oco_ooc_barrier_ev_above_ooc,
+            pes.linear_ooc_minimum_ev_above_oco,
         )
-        self.assertIn("O+CO", evidence.ooc_nuclear_arrangement)
-        self.assertEqual(evidence.ooc_electronic_state, "1A'")
+        self.assertIn("O+CO", pes.ooc_nuclear_arrangement)
+        self.assertEqual(pes.ooc_electronic_state, "1A'")
+
+    def test_nuclear_tube_is_not_on_the_experiment_ledger(self):
+        evidence = neutral_atomic_carbon_channel()
+        self.assertNotEqual(evidence.nuclear_tube.sequence, ())
+        self.assertNotIn("cyclic", evidence.experiment.detected_fragment)
+        self.assertNotIn("OOC", evidence.experiment.inferred_coproduct)
 
     def test_package_cannot_compute_a_branching_ratio_or_hamiltonian_orbit(self):
-        evidence = neutral_atomic_carbon_channel()
-        joined = " ".join(evidence.uncomputable_with_this_package).lower()
+        joined = " ".join(
+            neutral_atomic_carbon_channel().problem.uncomputable_with_this_package
+        ).lower()
         self.assertIn("branching", joined)
-        self.assertIn("potential", joined)
+        self.assertIn("origin", joined)
         self.assertIn("orbit", joined)
 
     def test_citations_are_bound_to_what_they_warrant(self):
@@ -78,6 +102,7 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertIn("inferred", by_doi["10.1126/science.1257156"].lower())
         self.assertIn("O+CO", by_doi["10.1039/d1cp01101d"])
         self.assertIn("not a C+O2 flux", by_doi["10.1063/1.4808369"])
+        self.assertIn("101.5-107.2 nm", by_doi["10.1063/1.4808369"])
         self.assertNotIn("10.1039/d1cp00369g", by_doi)
         self.assertTrue(all(isinstance(item, Citation) for item in evidence.references))
 
