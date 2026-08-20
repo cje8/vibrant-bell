@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "co2-quantum-path"
 version = "0.1.0"
-description = "Problem specification and small numerical checks for CO2 to C + O2 paths"
+description = "Well-posed vs ill-posed questions for isolated-molecule CO2 to C + O2"
 requires-python = ">=3.10"
 
 [tool.setuptools.packages.find]

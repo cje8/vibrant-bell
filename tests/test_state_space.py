@@ -37,6 +37,8 @@ class StateSpaceTests(unittest.TestCase):
     def test_fraction_is_validated(self):
         with self.assertRaises(ValueError):
             geodesic_state([1, 0], [0, 1], 1.1)
+        with self.assertRaises(ValueError):
+            geodesic_state([1, 0], [0, 1], float("nan"))
 
 
 if __name__ == "__main__":

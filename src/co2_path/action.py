@@ -29,10 +29,9 @@ def discrete_euclidean_action(
 ) -> float:
     """Evaluate a trapezoidal, fixed-time discretization of Euclidean action.
 
-    The caller supplies coordinate images, potential values at those images,
-    diagonal coordinate masses, and a positive imaginary-time step.  Units must
-    be mutually consistent.  This function evaluates a path; it does not claim
-    to locate an instanton or account for electronic-state transitions.
+    Returns the nuclear action ``S = ∫ dτ [½ m (dq/dτ)² + V(q)]``, not ``S/ℏ``
+    and not a Hilbert-space geometric length.  The caller must supply ``V``.
+    This does not locate an instanton or include electronic transitions.
     """
 
     _validate_path(path, masses)

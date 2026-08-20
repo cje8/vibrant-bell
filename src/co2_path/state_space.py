@@ -57,7 +57,7 @@ def geodesic_state(
     routine chooses the phase already present in ``final``.
     """
 
-    if not 0.0 <= fraction <= 1.0:
+    if not math.isfinite(fraction) or not 0.0 <= fraction <= 1.0:
         raise ValueError("fraction must lie in [0, 1]")
 
     start = normalize(initial)

@@ -18,14 +18,27 @@ def photon_energy_ev(wavelength_nm: float) -> float:
 
 
 @dataclass(frozen=True)
+class Citation:
+    """A DOI attached to the statement it can actually support."""
+
+    doi: str
+    warrants: str
+
+
+@dataclass(frozen=True)
 class ChannelEvidence:
-    """Facts, PES landmarks, and conjectures kept on separate fields.
+    """Facts, inferences, PES landmarks, and conjectures on separate fields.
 
     This is not a fitted potential-energy surface and not a unique trajectory.
     """
 
-    product_channel: str
+    detected_fragment: str
+    inferred_coproduct: str
+    coproduct_directly_detected: bool
+    total_spin_measured: bool
+    total_spin_compatible_with_singlet: bool
     literature_threshold_ev: float
+    literature_threshold_derived_here: bool
     observed_vuv_short_nm: float
     observed_vuv_long_nm: float
     observed_photon_energy_high_ev: float
@@ -41,8 +54,10 @@ class ChannelEvidence:
     sequential_nuclear_tube_status: str
     conjectured_nuclear_sequence: tuple[str, ...]
     well_posed_questions: tuple[str, ...]
+    ill_posed_questions: tuple[str, ...]
+    uncomputable_with_this_package: tuple[str, ...]
     scope: str
-    references: tuple[str, ...]
+    references: tuple[Citation, ...]
 
     def as_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -51,14 +66,20 @@ class ChannelEvidence:
 def neutral_atomic_carbon_channel() -> ChannelEvidence:
     """Return the isolated-molecule C + O2 record with claims separated."""
 
-    vuv_range_nm = (101.5, 107.2)
+    short_nm = 101.5
+    long_nm = 107.2
     return ChannelEvidence(
-        product_channel="[C(3P) x O2(X 3Sigma_g-)] total S=0",
+        detected_fragment="C(3P)",
+        inferred_coproduct="O2(X 3Sigma_g-)",
+        coproduct_directly_detected=False,
+        total_spin_measured=False,
+        total_spin_compatible_with_singlet=True,
         literature_threshold_ev=11.44,
-        observed_vuv_short_nm=vuv_range_nm[0],
-        observed_vuv_long_nm=vuv_range_nm[1],
-        observed_photon_energy_high_ev=photon_energy_ev(vuv_range_nm[0]),
-        observed_photon_energy_low_ev=photon_energy_ev(vuv_range_nm[1]),
+        literature_threshold_derived_here=False,
+        observed_vuv_short_nm=short_nm,
+        observed_vuv_long_nm=long_nm,
+        observed_photon_energy_high_ev=photon_energy_ev(short_nm),
+        observed_photon_energy_low_ev=photon_energy_ev(long_nm),
         observed_yield_percent=5.0,
         observed_yield_uncertainty_percent=2.0,
         # Ground 1A' O+CO arrangement (San Vicente Veliz / Koner 2021).
@@ -70,7 +91,7 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
         sequential_nuclear_tube_observed=False,
         sequential_nuclear_tube_status=(
             "conjecture concatenating ground-state nuclear isomers with a "
-            "VUV photodissociation product channel"
+            "VUV photodissociation product assignment"
         ),
         conjectured_nuclear_sequence=(
             "linear O-C-O (X 1Sigma_g+)",
@@ -85,11 +106,44 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
             "stationary path of a specified action at specified energy or temperature",
             "channel-resolved photodissociation flux for a specified pulse and initial state",
         ),
+        ill_posed_questions=(
+            "unique representation-independent minimum-action path in the full state space",
+            "the nuclear cartoon followed by every reactive wavepacket",
+        ),
+        uncomputable_with_this_package=(
+            "photodissociation branching ratio",
+            "instanton without a supplied potential",
+            "Schrodinger orbit from a nuclear cartoon",
+        ),
         scope="isolated neutral gas-phase molecule; atomic carbon product",
         references=(
-            "10.1126/science.1257156",
-            "10.1063/1.4808369",
-            "10.1039/d1cp01101d",
-            "10.1103/PhysRevLett.65.1697",
+            Citation(
+                doi="10.1126/science.1257156",
+                warrants=(
+                    "VMI detection of C(3P) from CO2 at 101.5-107.2 nm with "
+                    "5±2% yield; O2 inferred from kinematics, not imaged"
+                ),
+            ),
+            Citation(
+                doi="10.1063/1.4808369",
+                warrants=(
+                    "singlet valence PESs and a 5x5 diabatic matrix for UV "
+                    "absorption; not a C+O2 flux or nuclear-tube measurement"
+                ),
+            ),
+            Citation(
+                doi="10.1039/d1cp01101d",
+                warrants=(
+                    "ground 1A' linear OOC minimum 7.37 eV above OCO and "
+                    "OCO/OOC saddle 0.369 eV above OOC on the O+CO arrangement"
+                ),
+            ),
+            Citation(
+                doi="10.1103/PhysRevLett.65.1697",
+                warrants=(
+                    "Fubini-Study geometry of quantum evolution; a geodesic "
+                    "between rays is not the Hamiltonian orbit"
+                ),
+            ),
         ),
     )
