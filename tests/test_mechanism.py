@@ -50,6 +50,8 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertIn("not a measurement", experiment.total_spin_compatibility_source)
         self.assertEqual(experiment.reported_channel_yield_percent, 5.0)
         self.assertFalse(experiment.yield_reanalyzed_here)
+        self.assertFalse(experiment.reported_yield_is_branching_ratio)
+        self.assertIn("not a complete branching ratio", experiment.reported_yield_denominator)
         self.assertEqual(experiment.observed_vuv_short_nm, 101.5)
         self.assertEqual(experiment.observed_vuv_long_nm, 107.2)
 
@@ -110,6 +112,7 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertIn("orbit", joined)
         self.assertIn("anandan", joined)
         self.assertIn("q(0)=q(beta hbar)", joined)
+        self.assertIn("coordinate chart", joined)
 
     def test_citations_are_bound_to_what_they_warrant(self):
         evidence = neutral_atomic_carbon_channel()

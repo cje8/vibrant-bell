@@ -54,6 +54,7 @@ def discrete_euclidean_action(
     masses: Sequence[Sequence[float]],
     delta_tau: Sequence[float],
     potential_origin: float,
+    coordinate_chart: str,
 ) -> float:
     """Evaluate a trapezoidal Euclidean action on a supplied nuclear path.
 
@@ -69,8 +70,10 @@ def discrete_euclidean_action(
     a Jacobi angle does not have a constant Cartesian mass.  Interval kinetic
     energy uses the average of the two endpoint mass vectors.
     ``potential_origin`` is the energy zero ``V₀``; without it a constant
-    shift in ``V`` would change ``S`` by ``V₀ × τ``.  The caller must supply
-    ``V``.  Electronic transitions are not included.
+    shift in ``V`` would change ``S`` by ``V₀ × τ``.  ``coordinate_chart``
+    names the nuclear chart; Jacobi angles are not Cartesian, so the mass
+    vectors are not interchangeable across unnamed charts.  The caller must
+    supply ``V``.  Electronic transitions are not included.
     """
 
     mass_table = _validate_path(path, masses)
@@ -88,6 +91,8 @@ def discrete_euclidean_action(
         raise ValueError("potential values must be finite")
     if not _is_finite_number(potential_origin):
         raise ValueError("potential_origin must be finite")
+    if not isinstance(coordinate_chart, str) or not coordinate_chart.strip():
+        raise ValueError("coordinate_chart must name the nuclear chart")
 
     action = 0.0
     for index, (left, right) in enumerate(zip(path, path[1:])):

@@ -24,8 +24,8 @@ curve drawn on a picture of nuclei.
    `distance = acos(|⟨initial|final⟩|)`.
    This is a Fubini–Study geodesic.  It ignores Ĥ.  The Anandan–Aharonov
    length of a Hamiltonian orbit is `(2/ℏ) ∫ ΔE(t) dt` along that orbit.
-   Two endpoint rays do not determine it; the geodesic is only a lower
-   bound.
+   Two endpoint rays do not determine it, and a uniform time step does not
+   specify the orbit.  The geodesic is only a lower bound.
 3. **One Born–Oppenheimer surface.**
    A mass-weighted steepest-descent curve (MEP/IRC) is defined only after a
    single electronic state and a nuclear coordinate chart are chosen.  It
@@ -35,11 +35,12 @@ curve drawn on a picture of nuclei.
    it is not Schrödinger evolution.  The Euclidean evaluator in this package
    returns nuclear `S = ∫ dτ [½ m(q) (dq/dτ)² + (V(q) − V₀)]` for a
    caller-supplied `V`, energy origin `V₀`, a mass vector at each image, and
-   one imaginary-time width per interval.  A uniform `Δτ` is not a thermal
-   instanton: this evaluator does not impose `q(0)=q(βℏ)`.  A Jacobi angle
-   does not have a constant Cartesian mass.  Without `V₀`, a constant shift
-   of `V` would change `S` by `V₀ × τ`.  The evaluator does not return
-   `S/ℏ`, and it does not invent `V`.
+   one imaginary-time width per interval, and a named nuclear coordinate
+   chart.  A uniform `Δτ` is not a thermal instanton: this evaluator does
+   not impose `q(0)=q(βℏ)`.  Jacobi angles are not Cartesian, so mass
+   vectors are not interchangeable across unnamed charts.  Without `V₀`, a
+   constant shift of `V` would change `S` by `V₀ × τ`.  The evaluator does
+   not return `S/ℏ`, and it does not invent `V`.
 5. **A specified pulse and asymptotic projectors.**
    Photodissociation yields a channel-resolved flux or S-matrix.  A “dominant
    tube” can be read off afterwards from the probability current.  It is an
@@ -55,9 +56,11 @@ Schrödinger orbit from a nuclear cartoon.
 
 **Directly detected (Lu et al., 2014).**  Neutral CO₂ irradiated between
 101.5 and 107.2 nm yields `C(³P)`, observed by velocity-map imaging, with a
-*reported* channel yield of **5 ± 2%**.  This repository does not reanalyze
-that yield.  Those wavelengths are **12.22 eV** and **11.57 eV**.  The
-experiment measures a carbon-atom product, not a sequence of nuclear isomers.
+*reported* channel yield of **5 ± 2%**.  That is not a complete branching
+ratio over all CO₂ photodissociation channels.  This repository does not
+reanalyze that yield.  Those wavelengths are **12.22 eV** and **11.57 eV**.
+The experiment measures a carbon-atom product, not a sequence of nuclear
+isomers.
 
 **Inferred, not imaged.**  Co-product `O₂(X ³Σg⁻)` is assigned from carbon
 kinematics and energy conservation.  Molecular oxygen was not the imaged

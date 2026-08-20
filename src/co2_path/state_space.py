@@ -91,14 +91,16 @@ def geodesic_state(
 
 def anandan_aharonov_length(
     energy_uncertainties: Sequence[float],
-    delta_t: float,
+    delta_t: Sequence[float],
 ) -> float:
     """Return ``(2/ħ) ∫ ΔE(t) dt`` for a supplied energy-uncertainty series.
 
     Units are ``ħ = 1``.  ``energy_uncertainties`` are ``ΔE(t)`` samples along
     a Hamiltonian orbit, not Fubini–Study distances between endpoint rays.
-    Two rays alone do not determine this length.  The Fubini–Study geodesic
-    distance is a lower bound on every such orbit length.
+    ``delta_t`` is one positive real-time width per interval; a uniform step
+    does not specify the orbit.  Two rays alone do not determine this length.
+    The Fubini–Study geodesic distance is a lower bound on every such orbit
+    length.
     """
 
     values = tuple(float(value) for value in energy_uncertainties)
@@ -106,10 +108,16 @@ def anandan_aharonov_length(
         raise ValueError("an orbit requires at least two energy-uncertainty samples")
     if any(not math.isfinite(value) or value < 0.0 for value in values):
         raise ValueError("energy uncertainties must be finite and non-negative")
-    if not math.isfinite(delta_t) or delta_t <= 0.0:
+    n_intervals = len(values) - 1
+    if isinstance(delta_t, (str, bytes)) or not isinstance(delta_t, Sequence):
+        raise ValueError("one positive delta_t is required per orbit interval")
+    if len(delta_t) != n_intervals:
+        raise ValueError("one positive delta_t is required per orbit interval")
+    steps = tuple(float(step) for step in delta_t)
+    if any(not math.isfinite(step) or step <= 0.0 for step in steps):
         raise ValueError("delta_t must be positive")
 
     integral = 0.0
-    for left, right in zip(values, values[1:]):
-        integral += 0.5 * (left + right) * delta_t
+    for (left, right), step in zip(zip(values, values[1:]), steps, strict=True):
+        integral += 0.5 * (left + right) * step
     return 2.0 * integral

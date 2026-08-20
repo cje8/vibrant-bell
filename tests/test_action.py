@@ -11,6 +11,7 @@ class ActionTests(unittest.TestCase):
             masses=((2.0,), (2.0,), (2.0,)),
             delta_tau=(1.0, 1.0),
             potential_origin=0.0,
+            coordinate_chart="cartesian-test",
         )
         self.assertAlmostEqual(action, 2.0)
 
@@ -21,6 +22,7 @@ class ActionTests(unittest.TestCase):
             masses=((1.0,), (1.0,)),
             delta_tau=(0.5,),
             potential_origin=0.0,
+            coordinate_chart="cartesian-test",
         )
         self.assertAlmostEqual(action, 1.0)
 
@@ -29,6 +31,7 @@ class ActionTests(unittest.TestCase):
             path=((0.0,), (1.0,), (2.0,)),
             masses=((2.0,), (2.0,), (2.0,)),
             delta_tau=(1.0, 1.0),
+            coordinate_chart="cartesian-test",
         )
         unshifted = discrete_euclidean_action(
             potentials=(1.0, 1.0, 1.0),
@@ -49,6 +52,7 @@ class ActionTests(unittest.TestCase):
             masses=((2.0,), (2.0,)),
             delta_tau=(1.0,),
             potential_origin=0.0,
+            coordinate_chart="cartesian-test",
         )
         low = discrete_euclidean_action(potentials=(0.0, 0.0), **kwargs)
         high = discrete_euclidean_action(potentials=(3.0, 3.0), **kwargs)
@@ -61,6 +65,7 @@ class ActionTests(unittest.TestCase):
             masses=((1.0,), (3.0,)),
             delta_tau=(1.0,),
             potential_origin=0.0,
+            coordinate_chart="cartesian-test",
         )
         self.assertAlmostEqual(action, 1.0)
 
@@ -72,6 +77,7 @@ class ActionTests(unittest.TestCase):
                 (1.0, 1.0),
                 (1.0,),
                 0.0,
+                "cartesian-test",
             )
 
     def test_dimension_mismatch_is_rejected(self):
@@ -82,6 +88,7 @@ class ActionTests(unittest.TestCase):
                 ((1.0, 1.0), (1.0, 1.0)),
                 (1.0,),
                 0.0,
+                "cartesian-test",
             )
 
     def test_scalar_time_step_is_rejected(self):
@@ -92,6 +99,7 @@ class ActionTests(unittest.TestCase):
                 ((1.0,), (1.0,)),
                 1.0,
                 0.0,
+                "cartesian-test",
             )
 
     def test_wrong_number_of_time_steps_is_rejected(self):
@@ -102,6 +110,7 @@ class ActionTests(unittest.TestCase):
                 ((1.0,), (1.0,), (1.0,)),
                 (1.0,),
                 0.0,
+                "cartesian-test",
             )
 
     def test_uneven_time_steps_are_accepted(self):
@@ -111,6 +120,7 @@ class ActionTests(unittest.TestCase):
             masses=((1.0,), (1.0,), (1.0,)),
             delta_tau=(1.0, 3.0),
             potential_origin=0.0,
+            coordinate_chart="cartesian-test",
         )
         self.assertAlmostEqual(action, 1.0 + 6.0)
 
@@ -122,6 +132,7 @@ class ActionTests(unittest.TestCase):
                 ((1.0,), (1.0,)),
                 (float("nan"),),
                 0.0,
+                "cartesian-test",
             )
 
     def test_non_finite_origin_is_rejected(self):
@@ -132,6 +143,7 @@ class ActionTests(unittest.TestCase):
                 ((1.0,), (1.0,)),
                 (1.0,),
                 float("nan"),
+                "cartesian-test",
             )
 
     def test_non_finite_coordinates_are_rejected(self):
@@ -142,6 +154,7 @@ class ActionTests(unittest.TestCase):
                 ((1.0,), (1.0,)),
                 (1.0,),
                 0.0,
+                "cartesian-test",
             )
 
     def test_non_finite_path_potential_is_rejected(self):
@@ -152,6 +165,18 @@ class ActionTests(unittest.TestCase):
                 ((1.0,), (1.0,)),
                 (1.0,),
                 0.0,
+                "cartesian-test",
+            )
+
+    def test_unnamed_coordinate_chart_is_rejected(self):
+        with self.assertRaises(ValueError):
+            discrete_euclidean_action(
+                ((0.0,), (1.0,)),
+                (0.0, 0.0),
+                ((1.0,), (1.0,)),
+                (1.0,),
+                0.0,
+                "",
             )
 
     def test_maximum_potential(self):

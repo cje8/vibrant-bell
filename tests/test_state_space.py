@@ -47,15 +47,19 @@ class StateSpaceTests(unittest.TestCase):
 
     def test_anandan_aharonov_length_is_not_the_endpoint_geodesic(self):
         geodesic = fubini_study_distance([1, 0], [0, 1])
-        orbit = anandan_aharonov_length((0.5, 0.5, 0.5), 1.0)
+        orbit = anandan_aharonov_length((0.5, 0.5, 0.5), (1.0, 1.0))
         self.assertAlmostEqual(orbit, 2.0)
         self.assertGreater(orbit, geodesic)
 
     def test_anandan_aharonov_length_rejects_a_single_sample(self):
         with self.assertRaises(ValueError):
-            anandan_aharonov_length((0.5,), 1.0)
+            anandan_aharonov_length((0.5,), (1.0,))
         with self.assertRaises(ValueError):
-            anandan_aharonov_length((0.5, -0.1), 1.0)
+            anandan_aharonov_length((0.5, -0.1), (1.0,))
+
+    def test_anandan_aharonov_length_rejects_a_scalar_time_step(self):
+        with self.assertRaises(ValueError):
+            anandan_aharonov_length((0.5, 0.5), 1.0)
 
 
 if __name__ == "__main__":

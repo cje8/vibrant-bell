@@ -38,6 +38,8 @@ class ExperimentLedger:
     reported_channel_yield_percent: float
     reported_channel_yield_uncertainty_percent: float
     yield_reanalyzed_here: bool
+    reported_yield_is_branching_ratio: bool
+    reported_yield_denominator: str
     observed_vuv_short_nm: float
     observed_vuv_long_nm: float
     observed_photon_energy_high_ev: float
@@ -130,6 +132,11 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
             reported_channel_yield_percent=5.0,
             reported_channel_yield_uncertainty_percent=2.0,
             yield_reanalyzed_here=False,
+            reported_yield_is_branching_ratio=False,
+            reported_yield_denominator=(
+                "Lu et al. reported channel yield near threshold; not a "
+                "complete branching ratio over all CO2 photodissociation channels"
+            ),
             observed_vuv_short_nm=short_nm,
             observed_vuv_long_nm=long_nm,
             observed_photon_energy_high_ev=photon_energy_ev(short_nm),
@@ -202,6 +209,7 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
                 "photodissociation branching ratio",
                 "instanton: this evaluator does not impose q(0)=q(beta hbar)",
                 "instanton without a supplied potential and energy origin",
+                "Euclidean action without a named nuclear coordinate chart",
                 "Schrodinger orbit from a nuclear cartoon",
                 "Anandan-Aharonov Hamiltonian orbit length from two endpoint rays",
             ),
