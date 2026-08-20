@@ -54,8 +54,8 @@ CO₂ potential-energy surface.
   a reported yield of **5 ± 2%** near threshold.
 - Published PES calculations support bending, a cyclic CO₂ region, and a
   collinear COO exit.  A later multidimensional PES reports a linear OOC
-  minimum about **7.37 eV** above linear OCO and an OCO/OOC connecting barrier
-  of about **0.369 eV**.
+  minimum about **7.37 eV** above linear OCO; the OCO/OOC connecting saddle
+  lies about **0.369 eV** above that OOC minimum, not above linear OCO.
 - The two triplet fragments can couple to total spin `S=0`; individual triplet
   labels therefore do not by themselves require a spin-changing transition.
 
@@ -93,7 +93,7 @@ conditional quantum probability current.
   [doi:10.1126/science.1257156](https://doi.org/10.1126/science.1257156).
 - S. Y. Grebenshchikov, *J. Chem. Phys.* **138**, 224106 (2013),
   [doi:10.1063/1.4808369](https://doi.org/10.1063/1.4808369).
-- M. Koner et al., *Phys. Chem. Chem. Phys.* **23**, 12291–12306 (2021),
-  [doi:10.1039/D1CP00369G](https://doi.org/10.1039/D1CP00369G).
+- J. C. San Vicente Veliz et al., *Phys. Chem. Chem. Phys.* **23**, 11251–11263
+  (2021), [doi:10.1039/d1cp01101d](https://doi.org/10.1039/d1cp01101d).
 - J. Anandan and Y. Aharonov, *Phys. Rev. Lett.* **65**, 1697–1700
   (1990), [doi:10.1103/PhysRevLett.65.1697](https://doi.org/10.1103/PhysRevLett.65.1697).

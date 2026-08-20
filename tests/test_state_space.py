@@ -23,6 +23,17 @@ class StateSpaceTests(unittest.TestCase):
         self.assertAlmostEqual(abs(midpoint[0]), math.sqrt(0.5))
         self.assertAlmostEqual(abs(midpoint[1]), math.sqrt(0.5))
 
+    def test_geodesic_parameter_is_arc_length_fraction(self):
+        initial = [1 + 2j, 3 - 1j, 0.5]
+        final = [0.2 - 0.7j, 1j, 2]
+        total = fubini_study_distance(initial, final)
+        for fraction in (0.0, 0.3, 0.7, 1.0):
+            point = geodesic_state(initial, final, fraction)
+            self.assertAlmostEqual(
+                fubini_study_distance(initial, point),
+                fraction * total,
+            )
+
     def test_fraction_is_validated(self):
         with self.assertRaises(ValueError):
             geodesic_state([1, 0], [0, 1], 1.1)

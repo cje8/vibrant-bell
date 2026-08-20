@@ -43,7 +43,7 @@ def fubini_study_distance(initial: Iterable[complex], final: Iterable[complex]) 
     start = normalize(initial)
     end = normalize(final)
     overlap = abs(_inner(start, end))
-    return math.acos(min(1.0, max(0.0, overlap)))
+    return math.acos(min(1.0, overlap))
 
 
 def geodesic_state(
@@ -66,7 +66,7 @@ def geodesic_state(
         raise ValueError("state vectors must have equal dimensions")
 
     overlap = _inner(start, end)
-    magnitude = min(1.0, max(0.0, abs(overlap)))
+    magnitude = min(1.0, abs(overlap))
     if magnitude > 1.0 - 1e-14:
         return start
 

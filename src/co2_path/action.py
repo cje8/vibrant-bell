@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import math
 from collections.abc import Iterable, Sequence
 
 
 def _validate_path(path: Sequence[Sequence[float]], masses: Sequence[float]) -> None:
     if len(path) < 2:
         raise ValueError("a path requires at least two images")
-    if not masses or any(mass <= 0.0 for mass in masses):
+    if not masses or any(not math.isfinite(mass) or mass <= 0.0 for mass in masses):
         raise ValueError("all coordinate masses must be positive")
     if any(len(image) != len(masses) for image in path):
         raise ValueError("every path image must match the mass-vector dimension")
@@ -31,7 +32,7 @@ def discrete_euclidean_action(
     _validate_path(path, masses)
     if len(potentials) != len(path):
         raise ValueError("one potential value is required per path image")
-    if delta_tau <= 0.0:
+    if not math.isfinite(delta_tau) or delta_tau <= 0.0:
         raise ValueError("delta_tau must be positive")
 
     action = 0.0
@@ -52,4 +53,6 @@ def maximum_potential(potentials: Iterable[float]) -> float:
     values = tuple(float(value) for value in potentials)
     if not values:
         raise ValueError("at least one potential value is required")
+    if any(not math.isfinite(value) for value in values):
+        raise ValueError("potential values must be finite")
     return max(values)

@@ -15,8 +15,11 @@ class MechanismEvidence:
     observed_vuv_range_nm: tuple[float, float]
     observed_yield_percent: float
     observed_yield_uncertainty_percent: float
+    linear_ooc_minimum_ev_above_oco: float
+    oco_ooc_barrier_ev_above_ooc: float
     exact_unique_path_known: bool
     scope: str
+    references: tuple[str, ...]
 
     def as_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -38,6 +41,15 @@ def neutral_atomic_carbon_channel() -> MechanismEvidence:
         observed_vuv_range_nm=(101.5, 107.2),
         observed_yield_percent=5.0,
         observed_yield_uncertainty_percent=2.0,
+        # OOC is 7.37 eV above OCO; the connecting saddle is 0.369 eV above OOC.
+        linear_ooc_minimum_ev_above_oco=7.37,
+        oco_ooc_barrier_ev_above_ooc=0.369,
         exact_unique_path_known=False,
         scope="isolated neutral gas-phase molecule; atomic carbon product",
+        references=(
+            "10.1126/science.1257156",
+            "10.1063/1.4808369",
+            "10.1039/d1cp01101d",
+            "10.1103/PhysRevLett.65.1697",
+        ),
     )
