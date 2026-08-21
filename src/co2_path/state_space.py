@@ -32,8 +32,13 @@ def normalize(values: Iterable[complex]) -> State:
     """Return a normalized copy of a nonzero complex vector."""
 
     state = _as_state(values)
+    if any(
+        not math.isfinite(value.real) or not math.isfinite(value.imag)
+        for value in state
+    ):
+        raise ValueError("state vector components must be finite")
     norm_squared = _inner(state, state).real
-    if norm_squared <= 0.0:
+    if not math.isfinite(norm_squared) or norm_squared <= 0.0:
         raise ValueError("a state vector must have nonzero norm")
     norm = math.sqrt(norm_squared)
     return tuple(value / norm for value in state)
@@ -113,10 +118,13 @@ def anandan_aharonov_length(
     delta_t: Sequence[float],
     hilbert_space: str,
 ) -> float:
-    """Return ``(2/ħ) ∫ ΔE(t) dt`` for a supplied energy-uncertainty series.
+    """Return ``(1/ħ) ∫ ΔE(t) dt`` for a supplied energy-uncertainty series.
 
-    Units are ``ħ = 1``.  ``energy_uncertainties`` are ``ΔE(t)`` samples along
-    a Hamiltonian orbit, not Fubini–Study distances between endpoint rays.
+    Units are ``ħ = 1``.  The factor matches this module's convention
+    ``d_FS = acos(abs(<initial|final>))``; the alternative convention that
+    doubles ``d_FS`` also doubles this orbit length.  ``energy_uncertainties``
+    are ``ΔE(t)`` samples along a Hamiltonian orbit, not Fubini–Study
+    distances between endpoint rays.
     ``delta_t`` is one positive real-time width per interval; a uniform step
     does not specify the orbit.  Two rays alone do not determine this length.
     The Fubini–Study geodesic distance is a lower bound on every such orbit
@@ -141,4 +149,4 @@ def anandan_aharonov_length(
     integral = 0.0
     for (left, right), step in zip(zip(values, values[1:]), steps, strict=True):
         integral += 0.5 * (left + right) * step
-    return 2.0 * integral
+    return integral

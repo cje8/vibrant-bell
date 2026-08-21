@@ -23,8 +23,10 @@ curve drawn on a picture of nuclei.
 2. **Projective geometry of two rays in a named finite `Cⁿ`.**
    `distance = acos(|⟨initial|final⟩|)`.
    This is a Fubini–Study geodesic on the space the caller supplied.  That
-   `Cⁿ` is not the CO₂ molecular Hilbert space.  The Anandan–Aharonov
-   length of a Hamiltonian orbit is `(2/ℏ) ∫ ΔE(t) dt` along that orbit.
+   `Cⁿ` is not the CO₂ molecular Hilbert space.  Under this repository's
+   `acos(|⟨initial|final⟩|)` normalization, the Anandan–Aharonov length of a
+   Hamiltonian orbit is `(1/ℏ) ∫ ΔE(t) dt` along that orbit.  The common
+   doubled-distance convention doubles both expressions.
    Two endpoint rays do not determine it, and a uniform time step does not
    specify the orbit.  The geodesic is only a lower bound.
 3. **One Born–Oppenheimer surface.**

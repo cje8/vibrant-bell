@@ -14,6 +14,17 @@ class StateSpaceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             normalize([0, 0])
 
+    def test_normalize_rejects_non_finite_components(self):
+        for value in (float("nan"), float("inf"), complex(0.0, float("inf"))):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                normalize([value, 0])
+
+    def test_distance_and_geodesic_reject_non_finite_components(self):
+        with self.assertRaises(ValueError):
+            fubini_study_distance([float("nan"), 0], [0, 1], "C^2-test")
+        with self.assertRaises(ValueError):
+            geodesic_state([1, 0], [float("inf"), 1], 0.5, "C^2-test")
+
     def test_orthogonal_distance_is_pi_over_two(self):
         distance = fubini_study_distance([1, 0], [0, 1], "C^2-test")
         self.assertAlmostEqual(distance, math.pi / 2)
@@ -57,11 +68,15 @@ class StateSpaceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             fubini_study_distance([1, 0], [0, 1], "CO2")
 
-    def test_anandan_aharonov_length_is_not_the_endpoint_geodesic(self):
-        geodesic = fubini_study_distance([1, 0], [0, 1], "C^2-test")
-        orbit = anandan_aharonov_length((0.5, 0.5, 0.5), (1.0, 1.0), "C^2-test")
-        self.assertAlmostEqual(orbit, 2.0)
-        self.assertGreater(orbit, geodesic)
+    def test_anandan_aharonov_length_matches_shortest_qubit_geodesic(self):
+        # With ħ=1, H=sigma_x takes |0> to -i|1> in time pi/2 and has
+        # constant energy uncertainty 1.  This orbit is a shortest geodesic.
+        geodesic = fubini_study_distance([1, 0], [0, -1j], "C^2-test")
+        orbit = anandan_aharonov_length(
+            (1.0, 1.0), (math.pi / 2,), "C^2-test"
+        )
+        self.assertAlmostEqual(orbit, math.pi / 2)
+        self.assertAlmostEqual(orbit, geodesic)
 
     def test_anandan_aharonov_length_rejects_a_single_sample(self):
         with self.assertRaises(ValueError):
