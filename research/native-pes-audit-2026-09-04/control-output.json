@@ -1,0 +1,16 @@
+{
+  "rkhs": {
+    "chunk_id": "8226c5",
+    "wall_time_seconds": 9.16e-7,
+    "exit_code": 0,
+    "original_token_count": 630,
+    "output": " Slow evaluation at point    1.5000000000000000       0.50000000000000000       gives   -2.7367794323641874     \n Slow evaluation at point    1.5000000000000000       0.50000000000000000       gives derivative of f with respect to x(1):    2.5985109477343258     \n Slow evaluation at point    1.5000000000000000       0.50000000000000000       gives derivative of f with respect to x(2):   -3.8532091912153703     \n Slow evaluation at point    1.5000000000000000       0.50000000000000000       gives the Hessian: \n -0.90508122721450945        4.2439915819305446E-314\n   3.7418808512690021       -7.2139271751606771     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives   -2.7367794364627755     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives derivative of f with respect to x(1):    2.5985109481220690     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives derivative of f with respect to x(2):   -3.8532091911590922     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives the Hessian: \n -0.90508122447691619        3.7418808512690021     \n   3.7418808512679886       -7.2139271751123868     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives   -2.7367794364627755     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives derivative of f with respect to x(1):    2.5985109481220690     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives derivative of f with respect to x(2):   -3.8532091911590922     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives the Hessian: \n -0.90508122447691619        3.7418808512679886     \n   3.7418808512679886       -7.2139271751123868     \n\n Evaluation with supplied mask:\n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives   -2.7367794364627755     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives derivative of f with respect to x(1):    2.5985109481220690     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives derivative of f with respect to x(2):    0.0000000000000000     \n Fast evaluation at point    1.5000000000000000       0.50000000000000000       gives the Hessian: \n -0.90508122447691619        0.0000000000000000     \n   0.0000000000000000       -7.2139271751123868     \n"
+  },
+  "pes": {
+    "chunk_id": "de9a2f",
+    "wall_time_seconds": 0.00000175,
+    "exit_code": 0,
+    "original_token_count": 38,
+    "output": " Energy =  -0.31217332377797824      Hartree\n dV/dr_i (Hartree/bohr) =   -2.9061861216896547E-003  0.10242152124882575       -6.4148876915465211E-002\n"
+  }
+}

@@ -1,0 +1,573 @@
+{
+  "executable": "/path/to/co2-pes-scratch/builds/trap/native_probe",
+  "data_directory": "/path/to/co2-pes-scratch/runs/original-kernel",
+  "case_count": 24,
+  "finite_case_count": 21,
+  "cases": [
+    {
+      "name": "upstream_example",
+      "r_bohr": [
+        2.4,
+        2.3,
+        4.5
+      ],
+      "stdin": "2.3999999999999999 2.2999999999999998 4.5\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.1217332377797824E-001  -2.9061861216896547E-003   1.0242152124882575E-001  -6.4148876915465211E-002\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.31217332377797824,
+      "gradient_hartree_per_bohr": [
+        -0.0029061861216896547,
+        0.10242152124882575,
+        -0.06414887691546521
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "upstream_example_O_swap",
+      "r_bohr": [
+        2.4,
+        4.5,
+        2.3
+      ],
+      "stdin": "2.3999999999999999 4.5 2.2999999999999998\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.1217551844907571E-001  -2.7530487534184016E-003  -6.4306208960051153E-002   1.0255326623864196E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3121755184490757,
+      "gradient_hartree_per_bohr": [
+        -0.0027530487534184016,
+        -0.06430620896005115,
+        0.10255326623864196
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "bent_control",
+      "r_bohr": [
+        3,
+        2.2,
+        2.2
+      ],
+      "stdin": "3 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.0745761865756527E-001  -7.5537505024394214E-003  -2.3353196705989185E-001  -2.3353083418069986E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.30745761865756527,
+      "gradient_hartree_per_bohr": [
+        -0.007553750502439421,
+        -0.23353196705989185,
+        -0.23353083418069986
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "bent_asymmetric",
+      "r_bohr": [
+        3,
+        2.1,
+        2.3
+      ],
+      "stdin": "3 2.1000000000000001 2.2999999999999998\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.0206989381306704E-001  -2.2085409431206536E-002  -2.9359815295450031E-001  -1.8266236951266432E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.30206989381306704,
+      "gradient_hartree_per_bohr": [
+        -0.022085409431206536,
+        -0.2935981529545003,
+        -0.18266236951266432
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "bent_asymmetric_O_swap",
+      "r_bohr": [
+        3,
+        2.3,
+        2.1
+      ],
+      "stdin": "3 2.2999999999999998 2.1000000000000001\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.0206998887392456E-001  -2.2084911188267980E-002  -1.8266262516299073E-001  -2.9359855176953309E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.30206998887392456,
+      "gradient_hartree_per_bohr": [
+        -0.02208491118826798,
+        -0.18266262516299073,
+        -0.2935985517695331
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "linear_OCO",
+      "r_bohr": [
+        4.4,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.4000000000000004 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9559093082802406E-001  -2.1650435258346501E-001   2.0942050213560623E-001   2.1139762766755835E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955909308280241,
+      "gradient_hartree_per_bohr": [
+        -0.216504352583465,
+        0.20942050213560623,
+        0.21139762766755835
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "linear_OCO_paper_rounded",
+      "r_bohr": [
+        4.412,
+        2.206,
+        2.206
+      ],
+      "stdin": "4.4119999999999999 2.206 2.206\n",
+      "returncode": -4,
+      "stdout": "",
+      "stderr": "\nProgram received signal SIGILL: Illegal instruction.\n\nBacktrace for this error:\n#0  0x1048003d3 in ???\n#1  0x1047ff143 in ???\n#2  0x19a190143 in ???\n#3  0x10432c9f7 in __surface1_MOD_crdtrf\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:171\n#4  0x10432cd2b in __surface1_MOD_pes3d\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:46\n#5  0x10432d50f in __callpot1_MOD_co21appes\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:426\n#6  0x10432d8d3 in native_probe\n\tat /path/to/co2-quantum-path/research/native-pes-audit-2026-09-04/native_probe.f90:11\n#7  0x10432dac3 in main\n\tat /path/to/co2-quantum-path/research/native-pes-audit-2026-09-04/native_probe.f90:4\n",
+      "valid_result": false
+    },
+    {
+      "name": "linear_OCO_asymmetric",
+      "r_bohr": [
+        4.4,
+        2.1,
+        2.3
+      ],
+      "stdin": "4.4000000000000004 2.1000000000000001 2.2999999999999998\n",
+      "returncode": -4,
+      "stdout": "",
+      "stderr": "\nProgram received signal SIGILL: Illegal instruction.\n\nBacktrace for this error:\n#0  0x1024243d3 in ???\n#1  0x102423143 in ???\n#2  0x19a190143 in ???\n#3  0x1020f49f7 in __surface1_MOD_crdtrf\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:171\n#4  0x1020f4bff in __surface1_MOD_pes3d\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:46\n#5  0x1020f550f in __callpot1_MOD_co21appes\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:426\n#6  0x1020f58d3 in native_probe\n\tat /path/to/co2-quantum-path/research/native-pes-audit-2026-09-04/native_probe.f90:11\n#7  0x1020f5ac3 in main\n\tat /path/to/co2-quantum-path/research/native-pes-audit-2026-09-04/native_probe.f90:4\n",
+      "valid_result": false
+    },
+    {
+      "name": "linear_OCO_binary_exact",
+      "r_bohr": [
+        4,
+        2,
+        2
+      ],
+      "stdin": "4 2 2\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.3805787845427222E-001  -1.5236438882198866E+000   1.1435033285554894E+000   1.2579183424889444E+000\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5380578784542722,
+      "gradient_hartree_per_bohr": [
+        -1.5236438882198866,
+        1.1435033285554894,
+        1.2579183424889444
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "linear_OCO_binary_exact_225",
+      "r_bohr": [
+        4.5,
+        2.25,
+        2.25
+      ],
+      "stdin": "4.5 2.25 2.25\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9366817597522425E-001  -1.6923432447581649E-001   2.1208472275898332E-001   2.1277206784963448E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5936681759752243,
+      "gradient_hartree_per_bohr": [
+        -0.1692343244758165,
+        0.21208472275898332,
+        0.21277206784963448
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "linear_OCO_asymmetric_binary_exact",
+      "r_bohr": [
+        4.5,
+        2,
+        2.5
+      ],
+      "stdin": "4.5 2 2.5\n",
+      "returncode": -4,
+      "stdout": "",
+      "stderr": "\nProgram received signal SIGILL: Illegal instruction.\n\nBacktrace for this error:\n#0  0x102ddc3d3 in ???\n#1  0x102ddb143 in ???\n#2  0x19a190143 in ???\n#3  0x102a249f7 in __surface1_MOD_crdtrf\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:171\n#4  0x102a24bff in __surface1_MOD_pes3d\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:46\n#5  0x102a2550f in __callpot1_MOD_co21appes\n\tat /path/to/co2-pes-scratch/CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90:426\n#6  0x102a258d3 in native_probe\n\tat /path/to/co2-quantum-path/research/native-pes-audit-2026-09-04/native_probe.f90:11\n#7  0x102a25ac3 in main\n\tat /path/to/co2-quantum-path/research/native-pes-audit-2026-09-04/native_probe.f90:4\n",
+      "valid_result": false
+    },
+    {
+      "name": "linear_OOC",
+      "r_bohr": [
+        2.6,
+        2.2,
+        4.8
+      ],
+      "stdin": "2.6000000000000001 2.2000000000000002 4.7999999999999998\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.3121786278418741E-001   3.8241849867441648E-002   4.6560526915604826E-002  -3.9266317400202269E-002\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3312178627841874,
+      "gradient_hartree_per_bohr": [
+        0.03824184986744165,
+        0.046560526915604826,
+        -0.03926631740020227
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_0.1_rad",
+      "r_bohr": [
+        4.394501145737852,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.394501145737852 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9463130178660251E-001  -1.7485513794076937E-001   1.6753999827485921E-001   1.6753999854923024E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5946313017866025,
+      "gradient_hartree_per_bohr": [
+        -0.17485513794076937,
+        0.16753999827485921,
+        0.16753999854923024
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_0.01_rad",
+      "r_bohr": [
+        4.399945000114584,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999450001145837 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9558135174652782E-001  -1.7416906622578826E-001   1.6806150182855820E-001   1.6806150449646004E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955813517465278,
+      "gradient_hartree_per_bohr": [
+        -0.17416906622578826,
+        0.1680615018285582,
+        0.16806150449646004
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_0.001_rad",
+      "r_bohr": [
+        4.399999450000012,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999994500000117 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9559083503842802E-001  -1.7416236890173339E-001   1.6806694506763359E-001   1.6806697183865790E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.595590835038428,
+      "gradient_hartree_per_bohr": [
+        -0.1741623689017334,
+        0.1680669450676336,
+        0.1680669718386579
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_0.0001_rad",
+      "r_bohr": [
+        4.399999994500001,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999999945000008 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9559092987007145E-001  -1.7416745899751193E-001   1.6807203617782684E-001   1.6807230399704925E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955909298700715,
+      "gradient_hartree_per_bohr": [
+        -0.17416745899751193,
+        0.16807203617782684,
+        0.16807230399704925
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_1e-05_rad",
+      "r_bohr": [
+        4.399999999945,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999999999449999 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9559093081843906E-001  -1.7421908166532049E-001   1.6812245482515825E-001   1.6812513311704880E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955909308184391,
+      "gradient_hartree_per_bohr": [
+        -0.1742190816653205,
+        0.16812245482515825,
+        0.1681251331170488
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_1e-06_rad",
+      "r_bohr": [
+        4.399999999999451,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999999999994506 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9559093082792780E-001  -1.7473538863156418E-001   1.6862670771414470E-001   1.6865349418496098E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955909308279278,
+      "gradient_hartree_per_bohr": [
+        -0.17473538863156418,
+        0.1686267077141447,
+        0.16865349418496098
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "C_plus_O2_R10",
+      "r_bohr": [
+        2.29,
+        10.06533779860368,
+        10.06533779860368
+      ],
+      "stdin": "2.29 10.06533779860368 10.06533779860368\n",
+      "returncode": 0,
+      "stdout": "RESULT  -1.8322855768432283E-001  -7.2997588462627837E-003   2.9467508693483933E-005   3.0675795038689743E-005\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.18322855768432283,
+      "gradient_hartree_per_bohr": [
+        -0.007299758846262784,
+        0.000029467508693483933,
+        0.00003067579503868974
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "C_plus_O2_R20",
+      "r_bohr": [
+        2.29,
+        20.032748812881373,
+        20.032748812881373
+      ],
+      "stdin": "2.29 20.032748812881373 20.032748812881373\n",
+      "returncode": 0,
+      "stdout": "RESULT  -1.8316045906252348E-001  -7.2842911548725185E-003  -9.6537254954779146E-008  -5.1044223790585009E-008\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.18316045906252348,
+      "gradient_hartree_per_bohr": [
+        -0.0072842911548725185,
+        -9.653725495477915e-8,
+        -5.104422379058501e-8
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "C_plus_O2_R40",
+      "r_bohr": [
+        2.29,
+        40.016384456869666,
+        40.016384456869666
+      ],
+      "stdin": "2.29 40.016384456869666 40.016384456869666\n",
+      "returncode": 0,
+      "stdout": "RESULT  -1.8316103692023655E-001  -7.2918409040929211E-003  -9.9143682728167294E-010  -4.9259021896086862E-010\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.18316103692023655,
+      "gradient_hartree_per_bohr": [
+        -0.007291840904092921,
+        -9.91436827281673e-10,
+        -4.925902189608686e-10
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "O_plus_CO_R10",
+      "r_bohr": [
+        10.041594043666358,
+        2.13,
+        10.073779484358441
+      ],
+      "stdin": "10.041594043666358 2.1299999999999999 10.073779484358441\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.2327912603582248E-001  -4.3066004684991392E-005  -2.1950190054404555E-002   8.6031366652616542E-005\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3232791260358225,
+      "gradient_hartree_per_bohr": [
+        -0.00004306600468499139,
+        -0.021950190054404555,
+        0.00008603136665261654
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "O_plus_CO_R20",
+      "r_bohr": [
+        20.02082942681935,
+        2.13,
+        20.036991617991983
+      ],
+      "stdin": "20.020829426819351 2.1299999999999999 20.036991617991983\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.2330829522761689E-001  -4.7782902050125687E-006  -2.4908227430452644E-002   3.6060353840536713E-006\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3233082952276169,
+      "gradient_hartree_per_bohr": [
+        -0.000004778290205012569,
+        -0.024908227430452644,
+        0.0000036060353840536713
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "O_plus_CO_R40",
+      "r_bohr": [
+        40.01041877983528,
+        2.13,
+        40.01850863162546
+      ],
+      "stdin": "40.010418779835277 2.1299999999999999 40.018508631625458\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.2331213396248448E-001  -5.0665352143349239E-008  -2.5058148526448349E-002   4.3191080311026625E-008\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3233121339624845,
+      "gradient_hartree_per_bohr": [
+        -5.066535214334924e-8,
+        -0.02505814852644835,
+        4.3191080311026625e-8
+      ],
+      "valid_result": true
+    }
+  ],
+  "interior_gradient_checks": []
+}

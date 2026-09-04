@@ -1,0 +1,320 @@
+{
+  "comparisons": [
+    {
+      "left": "o0_kernel",
+      "right": "o0_csv",
+      "max_finite_energy_difference_hartree": {
+        "case": "bent_asymmetric",
+        "difference": 0.00004758265430648834
+      },
+      "max_finite_gradient_component_difference_hartree_per_bohr": {
+        "case": "bent_asymmetric",
+        "difference": 0.00007740276462025672
+      }
+    },
+    {
+      "left": "o0_kernel",
+      "right": "o2_kernel",
+      "max_finite_energy_difference_hartree": {
+        "case": "bent_control",
+        "difference": 2.873258853064442e-10
+      },
+      "max_finite_gradient_component_difference_hartree_per_bohr": {
+        "case": "OCO_bend_delta_1e-06_rad",
+        "difference": 5.173014963610889e-8
+      }
+    }
+  ],
+  "modes": {
+    "o0_kernel": {
+      "case_count": 24,
+      "finite_case_count": 21,
+      "failures": [
+        {
+          "case": "linear_OCO_paper_rounded",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.9562587587606763E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_asymmetric",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.8592541452165769E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_asymmetric_binary_exact",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.4156092144250390E-001                  Infinity                 -Infinity                 -Infinity\nFINITE T F F F\n"
+        }
+      ],
+      "oxygen_swaps": [
+        {
+          "case": "upstream_example",
+          "energy_difference_hartree": 0.000002194671097466294,
+          "max_permuted_gradient_difference_hartree_per_bohr": 0.0001573320445859422
+        },
+        {
+          "case": "bent_asymmetric",
+          "energy_difference_hartree": 9.506085751898041e-8,
+          "max_permuted_gradient_difference_hartree_per_bohr": 4.982429385562426e-7
+        }
+      ],
+      "gradient_checks": [
+        {
+          "h_bohr": 0.001,
+          "absolute_errors": [
+            5.057013237955155e-7,
+            0.0000036271141209409663,
+            3.037409830597415e-7
+          ]
+        },
+        {
+          "h_bohr": 0.0001,
+          "absolute_errors": [
+            6.761323369242067e-9,
+            0.000043752511070471733,
+            1.608226815608127e-8
+          ]
+        },
+        {
+          "h_bohr": 0.00001,
+          "absolute_errors": [
+            9.609631736184898e-10,
+            0.00043428420416569136,
+            5.674467902228031e-7
+          ]
+        }
+      ]
+    },
+    "o2_kernel": {
+      "case_count": 24,
+      "finite_case_count": 19,
+      "failures": [
+        {
+          "case": "linear_OCO",
+          "returncode": 0,
+          "raw_output": "RESULT                       NaN                       NaN                       NaN                       NaN\nFINITE F F F F\n"
+        },
+        {
+          "case": "linear_OCO_paper_rounded",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.9562587587606608E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_asymmetric",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.8592541452164404E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_binary_exact_225",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.9366817597522425E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_asymmetric_binary_exact",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.4156092144250290E-001                  Infinity                 -Infinity                 -Infinity\nFINITE T F F F\n"
+        }
+      ],
+      "oxygen_swaps": [
+        {
+          "case": "upstream_example",
+          "energy_difference_hartree": 0.000002194678319633603,
+          "max_permuted_gradient_difference_hartree_per_bohr": 0.00015733204792485467
+        },
+        {
+          "case": "bent_asymmetric",
+          "energy_difference_hartree": 9.506086107169409e-8,
+          "max_permuted_gradient_difference_hartree_per_bohr": 4.982429730321369e-7
+        }
+      ],
+      "gradient_checks": [
+        {
+          "h_bohr": 0.001,
+          "absolute_errors": [
+            5.056207055473272e-7,
+            0.0000036321481517442855,
+            2.997785535086006e-7
+          ]
+        },
+        {
+          "h_bohr": 0.0001,
+          "absolute_errors": [
+            5.513777455445901e-9,
+            0.000043621521353454096,
+            2.2053812803735084e-8
+          ]
+        },
+        {
+          "h_bohr": 0.00001,
+          "absolute_errors": [
+            1.9091527487385962e-8,
+            0.0004351265056185549,
+            2.998070584570023e-7
+          ]
+        }
+      ]
+    },
+    "o0_csv": {
+      "case_count": 24,
+      "finite_case_count": 21,
+      "failures": [
+        {
+          "case": "linear_OCO_paper_rounded",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.9562011947985838E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_asymmetric",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.8591926016884743E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_asymmetric_binary_exact",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.4155512242430026E-001                  Infinity                 -Infinity                 -Infinity\nFINITE T F F F\n"
+        }
+      ],
+      "oxygen_swaps": [
+        {
+          "case": "upstream_example",
+          "energy_difference_hartree": 0.000002458519950954141,
+          "max_permuted_gradient_difference_hartree_per_bohr": 0.00015702928205449385
+        },
+        {
+          "case": "bent_asymmetric",
+          "energy_difference_hartree": 9.593975164312596e-8,
+          "max_permuted_gradient_difference_hartree_per_bohr": 5.0807187798943e-7
+        }
+      ],
+      "gradient_checks": [
+        {
+          "h_bohr": 0.001,
+          "absolute_errors": [
+            5.057180268268346e-7,
+            0.000002125728679136518,
+            3.0210535101327096e-7
+          ]
+        },
+        {
+          "h_bohr": 0.0001,
+          "absolute_errors": [
+            4.175191786054411e-9,
+            0.000027874726946042205,
+            2.20678855744616e-8
+          ]
+        },
+        {
+          "h_bohr": 0.00001,
+          "absolute_errors": [
+            2.20732560771153e-8,
+            0.00028443307068243273,
+            2.998229267359154e-7
+          ]
+        }
+      ]
+    },
+    "o2_csv": {
+      "case_count": 24,
+      "finite_case_count": 19,
+      "failures": [
+        {
+          "case": "linear_OCO",
+          "returncode": 0,
+          "raw_output": "RESULT                       NaN                       NaN                       NaN                       NaN\nFINITE F F F F\n"
+        },
+        {
+          "case": "linear_OCO_paper_rounded",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.9562011947986071E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_asymmetric",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.8591926016883866E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_binary_exact_225",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.9366341937521694E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n"
+        },
+        {
+          "case": "linear_OCO_asymmetric_binary_exact",
+          "returncode": 0,
+          "raw_output": "RESULT  -5.4155512242429993E-001                  Infinity                 -Infinity                 -Infinity\nFINITE T F F F\n"
+        }
+      ],
+      "oxygen_swaps": [
+        {
+          "case": "upstream_example",
+          "energy_difference_hartree": 0.0000024585278420863332,
+          "max_permuted_gradient_difference_hartree_per_bohr": 0.00015702928326682963
+        },
+        {
+          "case": "bent_asymmetric",
+          "energy_difference_hartree": 9.593974537036587e-8,
+          "max_permuted_gradient_difference_hartree_per_bohr": 5.080718398879636e-7
+        }
+      ],
+      "gradient_checks": [
+        {
+          "h_bohr": 0.001,
+          "absolute_errors": [
+            5.055168616867334e-7,
+            0.0000021101458633210335,
+            2.941793425526029e-7
+          ]
+        },
+        {
+          "h_bohr": 0.0001,
+          "absolute_errors": [
+            4.176614592371619e-9,
+            0.00002794885345352993,
+            4.2493975560553565e-8
+          ]
+        },
+        {
+          "h_bohr": 0.00001,
+          "absolute_errors": [
+            9.79240020321237e-9,
+            0.0002841659892946491,
+            5.393495877414889e-7
+          ]
+        }
+      ]
+    },
+    "trap_kernel": {
+      "case_count": 24,
+      "finite_case_count": 21,
+      "failures": [
+        {
+          "case": "linear_OCO_paper_rounded",
+          "returncode": -4,
+          "raw_output": ""
+        },
+        {
+          "case": "linear_OCO_asymmetric",
+          "returncode": -4,
+          "raw_output": ""
+        },
+        {
+          "case": "linear_OCO_asymmetric_binary_exact",
+          "returncode": -4,
+          "raw_output": ""
+        }
+      ],
+      "oxygen_swaps": [
+        {
+          "case": "upstream_example",
+          "energy_difference_hartree": 0.000002194671097466294,
+          "max_permuted_gradient_difference_hartree_per_bohr": 0.0001573320445859422
+        },
+        {
+          "case": "bent_asymmetric",
+          "energy_difference_hartree": 9.506085751898041e-8,
+          "max_permuted_gradient_difference_hartree_per_bohr": 4.982429385562426e-7
+        }
+      ],
+      "gradient_checks": []
+    }
+  }
+}

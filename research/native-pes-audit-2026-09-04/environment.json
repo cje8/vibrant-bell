@@ -1,0 +1,136 @@
+{
+  "date": "2026-09-04",
+  "scratch": "/path/to/co2-pes-scratch",
+  "repository_head": "ee8046bd7aa35c225cc11bc86ae9456a5e55ff6e",
+  "compiler": "GNU Fortran (conda-forge gcc 16.2.0-4) 16.2.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0\nBuildVersion:\t\t26A5406e\n",
+  "architecture": "arm64",
+  "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+  "dynamic_libraries": "builds/o0/native_probe:\n\t@rpath/libgfortran.5.dylib (compatibility version 6.0.0, current version 6.0.0)\n\t@rpath/libquadmath.0.dylib (compatibility version 1.0.0, current version 1.0.0)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)\n",
+  "build_script": "build_native.sh",
+  "flags": {
+    "o0": [
+      "-O0",
+      "-g",
+      "-fbacktrace"
+    ],
+    "o2": [
+      "-O2",
+      "-g",
+      "-fbacktrace"
+    ],
+    "trap": [
+      "-O0",
+      "-g",
+      "-fbacktrace",
+      "-ffpe-trap=invalid,zero,overflow"
+    ]
+  },
+  "downloads": {
+    "micromamba": "https://micro.mamba.pm/api/micromamba/osx-arm64/latest",
+    "PES": "https://codeload.github.com/MMunibas/CO2-PESs/tar.gz/020c61d365f2f1c3ac44644378901ba0ab3c9406",
+    "RKHS": "https://codeload.github.com/MMunibas/RKHS/tar.gz/a392786bd3575dec6ae63b485112a40b20b5d1a8"
+  },
+  "sha256": [
+    {
+      "sha256": "500f5074feb8d02c4296ef9921c3650ed2874171805a9fbb8fbb53896433646b",
+      "path": "micromamba.tar.bz2"
+    },
+    {
+      "sha256": "2720dcecebc84bffaaa9118e464bc9f542e9bd98538394a31f3ef8771fe1720f",
+      "path": "co2-pes.tar.gz"
+    },
+    {
+      "sha256": "1edfa8fa6858616a5ad3f7ffc4ca426d2282d99a1776c1591c9f4b0755bbc03c",
+      "path": "rkhs.tar.gz"
+    },
+    {
+      "sha256": "8c666040c463bbcd53e2a9d94427bc77928c4bc8842a7656ac683d746c74d0a3",
+      "path": "CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/1AP/CO2-1AP-PES.f90"
+    },
+    {
+      "sha256": "8519e00f3afa042f7b56d7278ed42a7039f2c1e6c0a9a943c0bbb0ab2ea9ac6b",
+      "path": "CO2-PESs-020c61d365f2f1c3ac44644378901ba0ab3c9406/pes_test.f90"
+    },
+    {
+      "sha256": "b22fe8c332210d03e2d92e74e6aaf602a1a96966020073b9b487201b4a4f753e",
+      "path": "RKHS-a392786bd3575dec6ae63b485112a40b20b5d1a8/src/RKHS.f90"
+    },
+    {
+      "sha256": "cf7f3369935570c4e4d1e6bb56cda17f4658ec06dbfdd87a9149d34af21d98c5",
+      "path": "RKHS-a392786bd3575dec6ae63b485112a40b20b5d1a8/src/example.f90"
+    },
+    {
+      "sha256": "826c5b6ecfc95941e972648c54438ea83ca36c55e64c1eda01973e19afe476a7",
+      "path": "RKHS-a392786bd3575dec6ae63b485112a40b20b5d1a8/README.md"
+    },
+    {
+      "sha256": "2b94b59df74adcec5ae41f61d9a9e7a0d050561451d4e7b47e27bcce4abeb9db",
+      "path": "runs/original-kernel/asymp.dat"
+    },
+    {
+      "sha256": "74669b3f54dffb10d435d913ed0075e7219d5758202ac3d5e212484cec6b1daf",
+      "path": "runs/original-kernel/pes11.kernel"
+    },
+    {
+      "sha256": "1a55378be2b4510bfbb8255298166c278d408c5b289fb030491c617c09962928",
+      "path": "runs/original-kernel/pes12.kernel"
+    },
+    {
+      "sha256": "1a55378be2b4510bfbb8255298166c278d408c5b289fb030491c617c09962928",
+      "path": "runs/original-kernel/pes13.kernel"
+    },
+    {
+      "sha256": "2b94b59df74adcec5ae41f61d9a9e7a0d050561451d4e7b47e27bcce4abeb9db",
+      "path": "runs/rebuilt-csv/asymp.dat"
+    },
+    {
+      "sha256": "5cffe69da0bb3988bb36496e2547a4d9b3905bfd328ed2e7a817b208367d54df",
+      "path": "runs/rebuilt-csv/pes11.csv"
+    },
+    {
+      "sha256": "7abe61e592ef5d2110fafa3af1980ddd1e9fffc63232d5328e17d250febb9b1b",
+      "path": "runs/rebuilt-csv/pes12.csv"
+    },
+    {
+      "sha256": "7abe61e592ef5d2110fafa3af1980ddd1e9fffc63232d5328e17d250febb9b1b",
+      "path": "runs/rebuilt-csv/pes13.csv"
+    },
+    {
+      "sha256": "e3735c90e017c8c4ce12e54be320fa6290357394ff3d3fb0599021632a5982b3",
+      "path": "runs/rebuilt-csv/pes11.kernel"
+    },
+    {
+      "sha256": "a2cef603ca8dd14abaefc3d195fc1eb732ab40e1af26f9464a4c07cb9617ff20",
+      "path": "runs/rebuilt-csv/pes12.kernel"
+    },
+    {
+      "sha256": "a2cef603ca8dd14abaefc3d195fc1eb732ab40e1af26f9464a4c07cb9617ff20",
+      "path": "runs/rebuilt-csv/pes13.kernel"
+    },
+    {
+      "sha256": "6be3632e248ea6adbc6010f02d82680aaa92639d022f47c9c484e11e6bddb72a",
+      "path": "runs/rkhs-control/multidimensional-grid.csv"
+    },
+    {
+      "sha256": "6be3632e248ea6adbc6010f02d82680aaa92639d022f47c9c484e11e6bddb72a",
+      "path": "runs/rkhs-control/multidimensional-grid-RECOVERED.csv"
+    }
+  ],
+  "data_modes": {
+    "original_kernel": "Copied asymp.dat + supplied pes11/12/13.kernel only; no CSV files.",
+    "rebuilt_csv": "Initially copied asymp.dat + pes11/12/13.csv only; first O0 invocation generated kernels. Final matrices load these O0-generated kernels, including the O2 matrix. No independent O2 coefficient rebuild was performed."
+  },
+  "gate": {
+    "command": "run_native_cases.py <O2 executable> <original-kernel directory> --require-finite",
+    "returncode": 1,
+    "finite_case_count": 19,
+    "case_count": 24
+  },
+  "caveats": [
+    "Only one compiler version / host; not cross-platform validation.",
+    "Linker warned about a duplicate scratch environment rpath; build succeeded.",
+    "Direct compiler invocation without activated environment initially could not locate clang; all final builds use micromamba run.",
+    "Micromamba environment registration to ~/.conda/environments.txt was denied; scratch installation succeeded, shell profiles unchanged."
+  ]
+}

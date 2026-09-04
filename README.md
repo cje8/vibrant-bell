@@ -131,6 +131,13 @@ a VUV carbon-atom detection cannot be read as a ground-state nuclear path.
 
 ## What a defensible calculation still has to specify
 
+A pinned upstream 1A′ evaluator has now been exercised in an isolated native
+Fortran environment. The [runtime audit](research/native-pes-audit-2026-09-04/review.md)
+records linear-geometry NaN/Infinity failures, build sensitivity, and differences
+between supplied and rebuilt kernels. Its preserved negative results and the
+diagnostic parser are tested in CI; CI does **not** compile the external PES or
+validate its physical accuracy. Upstream source/data are not redistributed.
+
 - isotopologue, initial rovibronic state, total angular momentum and parity;
 - photon energy and pulse, or a microcanonical energy / temperature;
 - a global diabatic electronic-state matrix over Jacobi coordinates
