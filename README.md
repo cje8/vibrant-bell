@@ -135,6 +135,43 @@ The well-posed result is then a channel-resolved scattering matrix or product
 flux.  A “dominant path” may be extracted afterward as a ridge of the
 conditional quantum probability current.
 
+## Machine-readable wavepacket input contract
+
+`WavepacketProblem` and `validate_wavepacket_problem` collect and check the
+**declarations** needed for a finite diabatic model. The contract contains the
+isotopologue, named Jacobi chart, initial rovibronic state, tagged radiation or
+microcanonical preparation, electronic-model/provider descriptors, and
+asymptotic product-projector descriptors.
+
+```python
+from co2_path import WavepacketProblem, validate_wavepacket_problem
+
+# Given a contract created by the caller:
+validate_wavepacket_problem(problem)  # None, or a field-addressed ValueError
+document = problem.to_json()
+restored = WavepacketProblem.from_json(document)
+assert restored.to_json() == document
+```
+
+A complete synthetic example (no numerical providers or external data):
+
+```bash
+python examples/wavepacket_contract.py
+```
+
+Passing validation means **structurally calculation-ready declarations only**.
+It does not guarantee actual calculation readiness, physical accuracy,
+global model coverage, Hermiticity, smoothness, gauge continuity, or accurate
+projectors. Provider IDs and checksums are inert metadata: the validator does
+not load, execute, or verify their artifacts. No propagation, flux, branching
+ratio, or trajectory is computed. The 120–160 nm five-state valence model is
+not thereby extended to the 101.5–107.2 nm C + O₂ problem.
+
+See [the schema and validation boundary](docs/wavepacket-contract.md) for
+supported units, compatibility rules, JSON behavior, and deferred numerical
+provider checks. Existing `ProblemContract` remains the conceptual question
+ledger; `WavepacketProblem` is a separate, concrete input specification.
+
 ## Primary references
 
 Each DOI is stored with the statement it can actually support.
