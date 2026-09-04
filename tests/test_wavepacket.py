@@ -248,13 +248,30 @@ class WavepacketContractTests(unittest.TestCase):
                         required_spin_connections=(("S0", "S1"),))
         p = replace(p, electronic_model=model)
         self.invalid(p, "requires SOC")
-        # Omitting an edge cannot hide an initial-to-product spin mismatch.
-        self.invalid(replace(p, electronic_model=replace(model, required_spin_connections=())), "requires SOC")
         soc = replace(model.potential, reference=synthetic_reference("soc"))
         p = replace(p, electronic_model=replace(model, soc=soc))
         self.assertEqual(WavepacketProblem.from_json(p.to_json()), p)
         for pair in (("S0", "X"), ("S0", "S0")):
             self.invalid(self.model(required_spin_connections=(pair,)), "required_spin_connections")
+
+    def test_zero_yield_spin_channel_is_a_valid_observable(self):
+        # Monitoring a triplet sector from a singlet is valid even when a
+        # spin-block-diagonal Hamiltonian leaves its population exactly zero.
+        p = self.channel(total_spin=1)
+        model = replace(p.electronic_model, states=(
+            p.electronic_model.states[0],
+            replace(p.electronic_model.states[1], multiplicity=3),
+        ))
+        p = replace(p, electronic_model=model)
+        self.assertIsNone(model.soc)
+        self.assertEqual(model.required_spin_connections, ())
+        self.assertIsNone(validate_wavepacket_problem(p))
+        self.assertEqual(WavepacketProblem.from_json(p.to_json()), p)
+        # Unknown correlations and inconsistent spin assignments remain errors.
+        bad_channel = replace(p.product_channels[0], correlated_states=("unknown",))
+        self.invalid(replace(p, product_channels=(bad_channel,)), "correlated_states")
+        bad_channel = replace(p.product_channels[0], total_spin=0)
+        self.invalid(replace(p, product_channels=(bad_channel,)), "spin sector")
 
     def transformed_problem(self):
         p = self.problem

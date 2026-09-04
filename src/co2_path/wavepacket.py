@@ -444,10 +444,9 @@ def validate_wavepacket_problem(problem: WavepacketProblem) -> None:
         _require(bool(correlations) and len(set(correlations)) == len(correlations)
                  and set(correlations) <= states.keys(), path + ".correlated_states",
                  "unique, known asymptotically correlated states required")
-        _require(model.soc is not None or any(
-            states[label].multiplicity == states[initial.electronic_state].multiplicity
-            for label in correlations
-        ), path + ".correlated_states", "initial-to-product multiplicity change requires SOC")
+        # A monitored channel may have exactly zero yield. Only explicitly
+        # required spin connections demand SOC; projectors do not assert
+        # nonzero dynamical reachability from the initial state.
         _require((channel.total_spin is None) == (channel.spin_evidence is None),
                  path + ".spin_evidence", "total spin and its evidence must be supplied together")
         if channel.total_spin is not None:

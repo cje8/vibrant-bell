@@ -81,10 +81,10 @@ domain. This means a caller **declares** coverage; the validator does not prove
 the PES is global or evaluate a point outside/inside its numerical support.
 
 `required_spin_connections` explicitly names state pairs. If a required edge
-changes multiplicity, SOC is mandatory. An initial-to-product connection also
-requires SOC if none of that channel's correlated states shares the initial
-multiplicity. A supplied SOC descriptor does not prove the coupling is nonzero
-or dynamically relevant. Two triplet fragments can be assigned a singlet
+changes multiplicity, SOC is mandatory. Monitored product channels do not
+require nonzero reachability: a different-spin projector is valid without SOC
+and may have exactly zero yield. A supplied SOC descriptor does not prove the
+coupling is nonzero or dynamically relevant. Two triplet fragments can be assigned a singlet
 total-spin sector: their fragment multiplicities alone do not require SOC.
 
 ## Initial state and preparation
@@ -145,7 +145,7 @@ fact-checked by string validation; a source label is not proof of measurement.
 
 ## Boundary and next layer
 
-Passing means **structurally calculation-ready declarations only**, not an
+Passing means **internally consistent metadata only**, not an
 accurate physical model or an executable simulation. A future numerical
 adapter/probe layer must load the identified artifacts and validate actual
 matrix shapes, units, finite values, Hermiticity (with explicit tolerances),
@@ -156,3 +156,27 @@ This work does not create a real PES, extend the 120–160 nm five-state valence
 model to the 101.5–107.2 nm experiment, build a grid/kinetic operator, propagate a
 packet, implement CAPs, integrate flux, or compute an S-matrix or branching
 ratio. The existing experiment and conjecture ledgers remain separate.
+
+### Known version-1 modeling limits
+
+Version 1 is an inventory of declarations, not a complete physical input
+contract. In particular:
+
+- Radiation metadata does not specify a unique electric field: field amplitude,
+  envelope normalization and duration convention are absent. Nor does it
+  distinguish finite-field propagation from a linear-response source packet.
+  A ground-state source outside the propagated electronic basis is unsupported.
+- Electronic gauge IDs do not specify the spatial frame or Cartesian/spherical
+  component convention of the transition dipole and polarization.
+- State count is the declared matrix dimension. The schema does not distinguish
+  full spin-component bases from symmetry-reduced/effective models, so SOC
+  metadata alone is not enough to construct a physical spin Hamiltonian.
+- Product `j` does not distinguish spin-free rotation from fine-structure total
+  angular momentum. Carbon `J_C`, O2 `N` versus `J`, and isotope-dependent
+  exchange restrictions require additional conventions. `C(3P)` must not be
+  read as the resolved `C(3P2)` observable of the Lu experiment.
+- A microcanonical energy does not uniquely specify a pure packet or ensemble;
+  an adapter must supply the preparation and normalization convention.
+
+These omissions require a future physical-model schema before propagation;
+passing the current validator does not resolve them.

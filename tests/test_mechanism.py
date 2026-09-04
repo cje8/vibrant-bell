@@ -1,3 +1,4 @@
+import json
 import math
 import unittest
 
@@ -65,10 +66,17 @@ class ChannelEvidenceTests(unittest.TestCase):
         self.assertIn("not a measurement", experiment.total_spin_compatibility_source)
         self.assertEqual(experiment.reported_channel_yield_percent, 5.0)
         self.assertFalse(experiment.yield_reanalyzed_here)
-        self.assertFalse(experiment.reported_yield_is_branching_ratio)
-        self.assertIn("not a complete branching ratio", experiment.reported_yield_denominator)
+        self.assertIsNone(experiment.reported_yield_is_branching_ratio)
+        self.assertIn("unverified", experiment.reported_yield_denominator)
         self.assertEqual(experiment.observed_vuv_short_nm, 101.5)
         self.assertEqual(experiment.observed_vuv_long_nm, 107.2)
+
+    def test_unverified_yield_classification_remains_null_in_json(self):
+        evidence = neutral_atomic_carbon_channel()
+        data = json.loads(json.dumps(evidence.as_dict()))
+        self.assertIsNone(data["experiment"]["reported_yield_is_branching_ratio"])
+        self.assertEqual(data["experiment"]["reported_channel_yield_percent"], 5.0)
+        self.assertEqual(data["experiment"]["reported_channel_yield_uncertainty_percent"], 2.0)
 
     def test_observed_photon_energies_are_hc_over_lambda(self):
         experiment = neutral_atomic_carbon_channel().experiment
