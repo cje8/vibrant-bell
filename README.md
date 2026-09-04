@@ -59,9 +59,11 @@ Schrödinger orbit from a nuclear cartoon.
 
 **Directly detected (Lu et al., 2014).**  Neutral CO₂ irradiated between
 101.5 and 107.2 nm yields `C(³P)`, observed by velocity-map imaging, with a
-*reported* channel yield of **5 ± 2%**.  That is not a complete branching
-ratio over all CO₂ photodissociation channels.  This repository does not
-reanalyze that yield.  Those wavelengths are **12.22 eV** and **11.57 eV**.
+*reported* channel yield of **5 ± 2%**. This repository has not verified its
+normalization denominator or detection corrections against the supplementary
+materials, and does not reanalyze that yield. Its branching-ratio classification
+is therefore `None` (JSON `null`), not a verified `False` or `True`.
+Those wavelengths are **12.22 eV** and **11.57 eV**.
 The experiment measures a carbon-atom product, not a sequence of nuclear
 isomers.
 
@@ -75,15 +77,19 @@ compatibility is not a measurement.
 
 **Not derived here.**  The literature threshold quoted for
 `CO₂ → C(³P) + O₂(X ³Σg⁻)` is **11.44 eV**.  This repository does not
-recompute that thermochemistry, and it does not subtract `hc/λ` from
-11.44 eV.  Those numbers do not share a derived energy zero here.
+recompute that thermochemistry or calculate excess energy here. A comparison
+may adopt the literature energy balance (Lu et al., Eq. 4); it must align the
+initial-state and fragment internal-energy conventions rather than mixing
+unrelated PES energy references.
 
 **Ground-state PES landmarks (San Vicente Veliz / Koner et al., 2021).**  On
 the ground `¹A′` surface, a linear OOC minimum lies about **7.37 eV** above
 linear OCO.  The OCO/OOC saddle is about **0.369 eV** above that OOC minimum.
-Those points live on the **O + CO** Jacobi arrangement of the ground surface.
-That arrangement is not the `C + O₂` photodissociation asymptote.  They are
-not a measured VUV photodissociation path.
+Those points are described in the **O + CO** Jacobi chart of the ground surface.
+The paper's global reactive PES also covers `C + O₂`; changing charts does not
+create a different physical configuration space. The OOC minimum itself is
+not the separated `C + O₂` asymptote, and the landmarks are not a measured VUV
+photodissociation path.
 
 **Scope.**  `C` means an isolated carbon atom.  Graphite or any other solid
 carbon phase is outside the three-atom Hilbert space.
@@ -102,8 +108,9 @@ concatenates frames from different ledgers **and different Jacobi
 arrangements**.  Linear OCO and collinear COO are ground-state **O + CO**
 landmarks; cyclic CO₂ is conjecture with an unspecified arrangement;
 `C + O₂` is an inferred photodissociation assignment.  None of those frames
-is an observed trajectory, and the concatenation is not uniquely selected by
-a representation-independent action principle.
+is an observed trajectory. Different charts can describe the same geometry;
+their difference alone does not rule out a connected route. The concatenation
+is not uniquely selected by a representation-independent action principle.
 
 Lu's experiment answers a VMI carbon-atom yield question.  It does not
 answer a geodesic, an MEP, or an instanton.
@@ -134,6 +141,43 @@ a VUV carbon-atom detection cannot be read as a ground-state nuclear path.
 The well-posed result is then a channel-resolved scattering matrix or product
 flux.  A “dominant path” may be extracted afterward as a ridge of the
 conditional quantum probability current.
+
+## Machine-readable wavepacket input contract
+
+`WavepacketProblem` and `validate_wavepacket_problem` collect and check the
+**declarations** needed for a finite diabatic model. The contract contains the
+isotopologue, named Jacobi chart, initial rovibronic state, tagged radiation or
+microcanonical preparation, electronic-model/provider descriptors, and
+asymptotic product-projector descriptors.
+
+```python
+from co2_path import WavepacketProblem, validate_wavepacket_problem
+
+# Given a contract created by the caller:
+validate_wavepacket_problem(problem)  # None, or a field-addressed ValueError
+document = problem.to_json()
+restored = WavepacketProblem.from_json(document)
+assert restored.to_json() == document
+```
+
+A complete synthetic example (no numerical providers or external data):
+
+```bash
+python examples/wavepacket_contract.py
+```
+
+Passing validation means **internally consistent metadata only**.
+It does not guarantee actual calculation readiness, physical accuracy,
+global model coverage, Hermiticity, smoothness, gauge continuity, or accurate
+projectors. Provider IDs and checksums are inert metadata: the validator does
+not load, execute, or verify their artifacts. No propagation, flux, branching
+ratio, or trajectory is computed. The 120–160 nm five-state valence model is
+not thereby extended to the 101.5–107.2 nm C + O₂ problem.
+
+See [the schema and validation boundary](docs/wavepacket-contract.md) for
+supported units, compatibility rules, JSON behavior, and deferred numerical
+provider checks. Existing `ProblemContract` remains the conceptual question
+ledger; `WavepacketProblem` is a separate, concrete input specification.
 
 ## Primary references
 

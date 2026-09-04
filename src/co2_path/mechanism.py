@@ -38,7 +38,7 @@ class ExperimentLedger:
     reported_channel_yield_percent: float
     reported_channel_yield_uncertainty_percent: float
     yield_reanalyzed_here: bool
-    reported_yield_is_branching_ratio: bool
+    reported_yield_is_branching_ratio: bool | None  # None: not verified here
     reported_yield_denominator: str
     observed_vuv_short_nm: float
     observed_vuv_long_nm: float
@@ -136,10 +136,11 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
             reported_channel_yield_percent=5.0,
             reported_channel_yield_uncertainty_percent=2.0,
             yield_reanalyzed_here=False,
-            reported_yield_is_branching_ratio=False,
+            reported_yield_is_branching_ratio=None,
             reported_yield_denominator=(
-                "Lu et al. reported channel yield near threshold; not a "
-                "complete branching ratio over all CO2 photodissociation channels"
+                "unverified here: Lu et al. reported a near-threshold channel "
+                "yield; its normalization and detection corrections require "
+                "verification against the supplementary materials"
             ),
             observed_vuv_short_nm=short_nm,
             observed_vuv_long_nm=long_nm,
@@ -147,8 +148,9 @@ def neutral_atomic_carbon_channel() -> ChannelEvidence:
             observed_photon_energy_low_ev=photon_energy_ev(long_nm),
             photon_energy_zero="vacuum photon energy hc/λ, not a molecular energy zero",
             photon_energy_compared_to_literature_threshold=(
-                "not subtracted here: hc/λ and the 11.44 eV literature "
-                "threshold do not share a derived energy zero in this package"
+                "not subtracted here: comparison may adopt the literature "
+                "energy balance (Lu et al., Eq. 4), with initial-state and "
+                "fragment internal-energy conventions explicitly aligned"
             ),
         ),
         thermochemistry=ThermochemistryLedger(

@@ -46,3 +46,6 @@ jobs:
 
       - name: Smoke-test CLI
         run: python -m co2_path
+
+      - name: Smoke-test synthetic wavepacket contract
+        run: python examples/wavepacket_contract.py
