@@ -1,0 +1,1195 @@
+{
+  "executable": "/path/to/co2-pes-scratch/builds/o2/native_probe",
+  "data_directory": "/path/to/co2-pes-scratch/runs/rebuilt-csv",
+  "case_count": 24,
+  "finite_case_count": 19,
+  "cases": [
+    {
+      "name": "upstream_example",
+      "r_bohr": [
+        2.4,
+        2.3,
+        4.5
+      ],
+      "stdin": "2.3999999999999999 2.2999999999999998 4.5\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.1216370556009121E-001  -2.9132737799309558E-003   1.0240204898865722E-001  -6.4159098759698288E-002\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3121637055600912,
+      "gradient_hartree_per_bohr": [
+        -0.002913273779930956,
+        0.10240204898865722,
+        -0.06415909875969829
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "upstream_example_O_swap",
+      "r_bohr": [
+        2.4,
+        4.5,
+        2.3
+      ],
+      "stdin": "2.3999999999999999 4.5 2.2999999999999998\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.1216616408793330E-001  -2.7574710695868537E-003  -6.4316128042965118E-002   1.0253304213145444E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3121661640879333,
+      "gradient_hartree_per_bohr": [
+        -0.0027574710695868537,
+        -0.06431612804296512,
+        0.10253304213145444
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "bent_control",
+      "r_bohr": [
+        3,
+        2.2,
+        2.2
+      ],
+      "stdin": "3 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.0741104220192284E-001  -7.6305265889044299E-003  -2.3357771432257812E-001  -2.3357657663981773E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.30741104220192284,
+      "gradient_hartree_per_bohr": [
+        -0.00763052658890443,
+        -0.23357771432257812,
+        -0.23357657663981773
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "bent_asymmetric",
+      "r_bohr": [
+        3,
+        2.1,
+        2.3
+      ],
+      "stdin": "3 2.1000000000000001 2.2999999999999998\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.0202231113505607E-001  -2.2162812243531355E-002  -2.9365568718209251E-001  -1.8269868147466839E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.30202231113505607,
+      "gradient_hartree_per_bohr": [
+        -0.022162812243531355,
+        -0.2936556871820925,
+        -0.1826986814746684
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "bent_asymmetric_O_swap",
+      "r_bohr": [
+        3,
+        2.3,
+        2.1
+      ],
+      "stdin": "3 2.2999999999999998 2.1000000000000001\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.0202240707480144E-001  -2.2162304171691467E-002  -1.8269894350906155E-001  -2.9365608490410477E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.30202240707480144,
+      "gradient_hartree_per_bohr": [
+        -0.022162304171691467,
+        -0.18269894350906155,
+        -0.2936560849041048
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "linear_OCO",
+      "r_bohr": [
+        4.4,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.4000000000000004 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT                       NaN                       NaN                       NaN                       NaN\nFINITE F F F F\n",
+      "stderr": "",
+      "finite": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "energy_hartree": null,
+      "gradient_hartree_per_bohr": [
+        null,
+        null,
+        null
+      ],
+      "valid_result": false
+    },
+    {
+      "name": "linear_OCO_paper_rounded",
+      "r_bohr": [
+        4.412,
+        2.206,
+        2.206
+      ],
+      "stdin": "4.4119999999999999 2.206 2.206\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9562011947986071E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n",
+      "stderr": "",
+      "finite": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "energy_hartree": -0.5956201194798607,
+      "gradient_hartree_per_bohr": [
+        null,
+        null,
+        null
+      ],
+      "valid_result": false
+    },
+    {
+      "name": "linear_OCO_asymmetric",
+      "r_bohr": [
+        4.4,
+        2.1,
+        2.3
+      ],
+      "stdin": "4.4000000000000004 2.1000000000000001 2.2999999999999998\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.8591926016883866E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n",
+      "stderr": "",
+      "finite": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "energy_hartree": -0.5859192601688387,
+      "gradient_hartree_per_bohr": [
+        null,
+        null,
+        null
+      ],
+      "valid_result": false
+    },
+    {
+      "name": "linear_OCO_binary_exact",
+      "r_bohr": [
+        4,
+        2,
+        2
+      ],
+      "stdin": "4 2 2\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.3804334469642567E-001  -1.5236638509339904E+000   1.1434889116188369E+000   1.2579089693406023E+000\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5380433446964257,
+      "gradient_hartree_per_bohr": [
+        -1.5236638509339904,
+        1.143488911618837,
+        1.2579089693406023
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "linear_OCO_binary_exact_225",
+      "r_bohr": [
+        4.5,
+        2.25,
+        2.25
+      ],
+      "stdin": "4.5 2.25 2.25\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9366341937521694E-001                       NaN                       NaN                       NaN\nFINITE T F F F\n",
+      "stderr": "",
+      "finite": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "energy_hartree": -0.5936634193752169,
+      "gradient_hartree_per_bohr": [
+        null,
+        null,
+        null
+      ],
+      "valid_result": false
+    },
+    {
+      "name": "linear_OCO_asymmetric_binary_exact",
+      "r_bohr": [
+        4.5,
+        2,
+        2.5
+      ],
+      "stdin": "4.5 2 2.5\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.4155512242429993E-001                  Infinity                 -Infinity                 -Infinity\nFINITE T F F F\n",
+      "stderr": "",
+      "finite": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "energy_hartree": -0.5415551224242999,
+      "gradient_hartree_per_bohr": [
+        null,
+        null,
+        null
+      ],
+      "valid_result": false
+    },
+    {
+      "name": "linear_OOC",
+      "r_bohr": [
+        2.6,
+        2.2,
+        4.8
+      ],
+      "stdin": "2.6000000000000001 2.2000000000000002 4.7999999999999998\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.3121030421991843E-001   3.8236270389773064E-002   4.6545224847614204E-002  -3.9273394404290084E-002\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3312103042199184,
+      "gradient_hartree_per_bohr": [
+        0.038236270389773064,
+        0.046545224847614204,
+        -0.039273394404290084
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_0.1_rad",
+      "r_bohr": [
+        4.394501145737852,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.394501145737852 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9462534802033695E-001  -1.7486301893749279E-001   1.6753474363463097E-001   1.6753474390905346E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.594625348020337,
+      "gradient_hartree_per_bohr": [
+        -0.1748630189374928,
+        0.16753474363463097,
+        0.16753474390905346
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_0.01_rad",
+      "r_bohr": [
+        4.399945000114584,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999450001145837 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9557544070879054E-001  -1.7417688322051328E-001   1.6805628632920189E-001   1.6805628899760230E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955754407087905,
+      "gradient_hartree_per_bohr": [
+        -0.17417688322051328,
+        0.1680562863292019,
+        0.1680562889976023
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_0.001_rad",
+      "r_bohr": [
+        4.399999450000012,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999994500000117 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9558492442630795E-001  -1.7417018526704922E-001   1.6806172996366556E-001   1.6806175673968582E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.595584924426308,
+      "gradient_hartree_per_bohr": [
+        -0.17417018526704922,
+        0.16806172996366556,
+        0.16806175673968582
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_0.0001_rad",
+      "r_bohr": [
+        4.399999994500001,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999999945000008 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9558501926220742E-001  -1.7417527543222702E-001   1.6806682113103874E-001   1.6806708900023667E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955850192622074,
+      "gradient_hartree_per_bohr": [
+        -0.17417527543222702,
+        0.16806682113103874,
+        0.16806708900023667
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_1e-05_rad",
+      "r_bohr": [
+        4.399999999945,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999999999449999 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9558502021061754E-001  -1.7422689799028679E-001   1.6811723944364365E-001   1.6811991823566999E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955850202106175,
+      "gradient_hartree_per_bohr": [
+        -0.1742268979902868,
+        0.16811723944364365,
+        0.16811991823567
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "OCO_bend_delta_1e-06_rad",
+      "r_bohr": [
+        4.399999999999451,
+        2.2,
+        2.2
+      ],
+      "stdin": "4.3999999999994506 2.2000000000000002 2.2000000000000002\n",
+      "returncode": 0,
+      "stdout": "RESULT  -5.9558502022010673E-001  -1.7474325517926353E-001   1.6862153912599437E-001   1.6864833295568651E-001\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.5955850202201067,
+      "gradient_hartree_per_bohr": [
+        -0.17474325517926353,
+        0.16862153912599437,
+        0.16864833295568651
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "C_plus_O2_R10",
+      "r_bohr": [
+        2.29,
+        10.06533779860368,
+        10.06533779860368
+      ],
+      "stdin": "2.29 10.06533779860368 10.06533779860368\n",
+      "returncode": 0,
+      "stdout": "RESULT  -1.8322855373332750E-001  -7.2997684793804181E-003   2.9465748250484247E-005   3.0674810988304030E-005\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.1832285537333275,
+      "gradient_hartree_per_bohr": [
+        -0.007299768479380418,
+        0.000029465748250484247,
+        0.00003067481098830403
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "C_plus_O2_R20",
+      "r_bohr": [
+        2.29,
+        20.032748812881373,
+        20.032748812881373
+      ],
+      "stdin": "2.29 20.032748812881373 20.032748812881373\n",
+      "returncode": 0,
+      "stdout": "RESULT  -1.8316045903018383E-001  -7.2842912379906862E-003  -9.6545779143321960E-008  -5.1046964192172448E-008\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.18316045903018383,
+      "gradient_hartree_per_bohr": [
+        -0.007284291237990686,
+        -9.654577914332196e-8,
+        -5.104696419217245e-8
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "C_plus_O2_R40",
+      "r_bohr": [
+        2.29,
+        40.016384456869666,
+        40.016384456869666
+      ],
+      "stdin": "2.29 40.016384456869666 40.016384456869666\n",
+      "returncode": 0,
+      "stdout": "RESULT  -1.8316103691997820E-001  -7.2918409047714357E-003  -9.9148146480794478E-010  -4.9259066630737149E-010\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.1831610369199782,
+      "gradient_hartree_per_bohr": [
+        -0.007291840904771436,
+        -9.914814648079448e-10,
+        -4.925906663073715e-10
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "O_plus_CO_R10",
+      "r_bohr": [
+        10.041594043666358,
+        2.13,
+        10.073779484358441
+      ],
+      "stdin": "10.041594043666358 2.1299999999999999 10.073779484358441\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.2327911907376367E-001  -4.3069420399115460E-005  -2.1950204461765273E-002   8.6029999218164535E-005\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.32327911907376367,
+      "gradient_hartree_per_bohr": [
+        -0.00004306942039911546,
+        -0.021950204461765273,
+        0.00008602999921816454
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "O_plus_CO_R20",
+      "r_bohr": [
+        20.02082942681935,
+        2.13,
+        20.036991617991983
+      ],
+      "stdin": "20.020829426819351 2.1299999999999999 20.036991617991983\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.2330829516768955E-001  -4.7783076856382930E-006  -2.4908227555246208E-002   3.6060321344783112E-006\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.32330829516768955,
+      "gradient_hartree_per_bohr": [
+        -0.000004778307685638293,
+        -0.024908227555246208,
+        0.000003606032134478311
+      ],
+      "valid_result": true
+    },
+    {
+      "name": "O_plus_CO_R40",
+      "r_bohr": [
+        40.01041877983528,
+        2.13,
+        40.01850863162546
+      ],
+      "stdin": "40.010418779835277 2.1299999999999999 40.018508631625458\n",
+      "returncode": 0,
+      "stdout": "RESULT  -3.2331213396199532E-001  -5.0665446225561453E-008  -2.5058148527470167E-002   4.3191089293833577E-008\nFINITE T T T T\n",
+      "stderr": "",
+      "finite": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_hartree": -0.3233121339619953,
+      "gradient_hartree_per_bohr": [
+        -5.066544622556145e-8,
+        -0.025058148527470167,
+        4.319108929383358e-8
+      ],
+      "valid_result": true
+    }
+  ],
+  "interior_gradient_checks": [
+    {
+      "h_bohr": 0.001,
+      "center": {
+        "name": "fd_center",
+        "r_bohr": [
+          3,
+          2.1,
+          2.3
+        ],
+        "stdin": "3 2.1000000000000001 2.2999999999999998\n",
+        "returncode": 0,
+        "stdout": "RESULT  -3.0202231113505607E-001  -2.2162812243531355E-002  -2.9365568718209251E-001  -1.8269868147466839E-001\nFINITE T T T T\n",
+        "stderr": "",
+        "finite": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "energy_hartree": -0.30202231113505607,
+        "gradient_hartree_per_bohr": [
+          -0.022162812243531355,
+          -0.2936556871820925,
+          -0.1826986814746684
+        ],
+        "valid_result": true
+      },
+      "axes": [
+        {
+          "axis": 0,
+          "minus": {
+            "name": "fd_axis0_minus",
+            "r_bohr": [
+              2.999,
+              2.1,
+              2.3
+            ],
+            "stdin": "2.9990000000000001 2.1000000000000001 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0200023617834626E-001  -2.1987605688645048E-002  -2.9396507229689828E-001  -1.8278917356910573E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30200023617834626,
+            "gradient_hartree_per_bohr": [
+              -0.021987605688645048,
+              -0.2939650722968983,
+              -0.18278917356910573
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis0_plus",
+            "r_bohr": [
+              3.001,
+              2.1,
+              2.3
+            ],
+            "stdin": "3.0009999999999999 2.1000000000000001 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0204456281386705E-001  -2.2341052103648274E-002  -2.9334441329391975E-001  -1.8260742112375461E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30204456281386705,
+            "gradient_hartree_per_bohr": [
+              -0.022341052103648274,
+              -0.29334441329391975,
+              -0.1826074211237546
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.022163317760393042,
+          "absolute_error": 5.055168616867334e-7
+        },
+        {
+          "axis": 1,
+          "minus": {
+            "name": "fd_axis1_minus",
+            "r_bohr": [
+              3,
+              2.099,
+              2.3
+            ],
+            "stdin": "3 2.0990000000000002 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0172817967871818E-001  -2.2473852426047086E-002  -2.9461931026081972E-001  -1.8288387323253466E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.3017281796787182,
+            "gradient_hartree_per_bohr": [
+              -0.022473852426047086,
+              -0.2946193102608197,
+              -0.18288387323253466
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis1_plus",
+            "r_bohr": [
+              3,
+              2.101,
+              2.3
+            ],
+            "stdin": "3 2.101 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0231548683279064E-001  -2.1853197308320176E-002  -2.9269630476063474E-001  -1.8251277372429431E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30231548683279064,
+            "gradient_hartree_per_bohr": [
+              -0.021853197308320176,
+              -0.29269630476063474,
+              -0.1825127737242943
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.2936535770362292,
+          "absolute_error": 0.0000021101458633210335
+        },
+        {
+          "axis": 2,
+          "minus": {
+            "name": "fd_axis2_minus",
+            "r_bohr": [
+              3,
+              2.1,
+              2.299
+            ],
+            "stdin": "3 2.1000000000000001 2.2989999999999999\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0183927660363119E-001  -2.2253814564714997E-002  -2.9384144042415739E-001  -1.8337069578776524E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.3018392766036312,
+            "gradient_hartree_per_bohr": [
+              -0.022253814564714997,
+              -0.2938414404241574,
+              -0.18337069578776524
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis2_plus",
+            "r_bohr": [
+              3,
+              2.1,
+              2.3009999999999997
+            ],
+            "stdin": "3 2.1000000000000001 2.3009999999999997\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0220467455493921E-001  -2.2072061552976908E-002  -2.9347035089542128E-001  -1.8202849827642276E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.3022046745549392,
+            "gradient_hartree_per_bohr": [
+              -0.022072061552976908,
+              -0.2934703508954213,
+              -0.18202849827642276
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.18269897565401094,
+          "absolute_error": 2.941793425526029e-7
+        }
+      ]
+    },
+    {
+      "h_bohr": 0.0001,
+      "center": {
+        "name": "fd_center",
+        "r_bohr": [
+          3,
+          2.1,
+          2.3
+        ],
+        "stdin": "3 2.1000000000000001 2.2999999999999998\n",
+        "returncode": 0,
+        "stdout": "RESULT  -3.0202231113505607E-001  -2.2162812243531355E-002  -2.9365568718209251E-001  -1.8269868147466839E-001\nFINITE T T T T\n",
+        "stderr": "",
+        "finite": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "energy_hartree": -0.30202231113505607,
+        "gradient_hartree_per_bohr": [
+          -0.022162812243531355,
+          -0.2936556871820925,
+          -0.1826986814746684
+        ],
+        "valid_result": true
+      },
+      "axes": [
+        {
+          "axis": 0,
+          "minus": {
+            "name": "fd_axis0_minus",
+            "r_bohr": [
+              2.9999,
+              2.1,
+              2.3
+            ],
+            "stdin": "2.9998999999999998 2.1000000000000001 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0202009573677724E-001  -2.2145155255767029E-002  -2.9368671057756479E-001  -1.8270776515100406E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30202009573677724,
+            "gradient_hartree_per_bohr": [
+              -0.02214515525576703,
+              -0.2936867105775648,
+              -0.18270776515100406
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis0_plus",
+            "r_bohr": [
+              3.0001,
+              2.1,
+              2.3
+            ],
+            "stdin": "3.0001000000000002 2.1000000000000001 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0202452830006127E-001  -2.2180499563594754E-002  -2.9362464489677853E-001  -1.8268959011818081E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30202452830006127,
+            "gradient_hartree_per_bohr": [
+              -0.022180499563594754,
+              -0.29362464489677853,
+              -0.1826895901181808
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.022162816420145948,
+          "absolute_error": 4.176614592371619e-9
+        },
+        {
+          "axis": 1,
+          "minus": {
+            "name": "fd_axis1_minus",
+            "r_bohr": [
+              3,
+              2.0999,
+              2.3
+            ],
+            "stdin": "3 2.0998999999999999 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0199294645113700E-001  -2.2193851238114241E-002  -2.9375190455355743E-001  -1.8271724559967781E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.301992946451137,
+            "gradient_hartree_per_bohr": [
+              -0.02219385123811424,
+              -0.29375190455355743,
+              -0.1827172455996778
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis1_plus",
+            "r_bohr": [
+              3,
+              2.1001000000000003,
+              2.3
+            ],
+            "stdin": "3 2.1001000000000003 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0205167199880273E-001  -2.2131786397037397E-002  -2.9355955475399831E-001  -1.8268012337119027E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30205167199880273,
+            "gradient_hartree_per_bohr": [
+              -0.022131786397037397,
+              -0.2935595547539983,
+              -0.18268012337119027
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.293627738328639,
+          "absolute_error": 0.00002794885345352993
+        },
+        {
+          "axis": 2,
+          "minus": {
+            "name": "fd_axis2_minus",
+            "r_bohr": [
+              3,
+              2.1,
+              2.2998999999999996
+            ],
+            "stdin": "3 2.1000000000000001 2.2998999999999996\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0200403792645203E-001  -2.2171901013167496E-002  -2.9367424383606028E-001  -1.8276580280763088E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30200403792645203,
+            "gradient_hartree_per_bohr": [
+              -0.022171901013167496,
+              -0.2936742438360603,
+              -0.18276580280763088
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis2_plus",
+            "r_bohr": [
+              3,
+              2.1,
+              2.3001
+            ],
+            "stdin": "3 2.1000000000000001 2.3001\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0204057767124576E-001  -2.2153725959100035E-002  -2.9363713479234871E-001  -1.8263157832652260E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30204057767124576,
+            "gradient_hartree_per_bohr": [
+              -0.022153725959100035,
+              -0.2936371347923487,
+              -0.1826315783265226
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.18269872396864395,
+          "absolute_error": 4.2493975560553565e-8
+        }
+      ]
+    },
+    {
+      "h_bohr": 0.00001,
+      "center": {
+        "name": "fd_center",
+        "r_bohr": [
+          3,
+          2.1,
+          2.3
+        ],
+        "stdin": "3 2.1000000000000001 2.2999999999999998\n",
+        "returncode": 0,
+        "stdout": "RESULT  -3.0202231113505607E-001  -2.2162812243531355E-002  -2.9365568718209251E-001  -1.8269868147466839E-001\nFINITE T T T T\n",
+        "stderr": "",
+        "finite": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "energy_hartree": -0.30202231113505607,
+        "gradient_hartree_per_bohr": [
+          -0.022162812243531355,
+          -0.2936556871820925,
+          -0.1826986814746684
+        ],
+        "valid_result": true
+      },
+      "axes": [
+        {
+          "axis": 0,
+          "minus": {
+            "name": "fd_axis0_minus",
+            "r_bohr": [
+              2.99999,
+              2.1,
+              2.3
+            ],
+            "stdin": "2.9999899999999999 2.1000000000000001 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0202208951524490E-001  -2.2161045179400176E-002  -2.9365879037025439E-001  -1.8269959018950899E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.3020220895152449,
+            "gradient_hartree_per_bohr": [
+              -0.022161045179400176,
+              -0.2936587903702544,
+              -0.182699590189509
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis0_plus",
+            "r_bohr": [
+              3.00001,
+              2.1,
+              2.3
+            ],
+            "stdin": "3.0000100000000001 2.1000000000000001 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0202253277168561E-001  -2.2164579609756169E-002  -2.9365258380293324E-001  -1.8269777268594778E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.3020225327716856,
+            "gradient_hartree_per_bohr": [
+              -0.02216457960975617,
+              -0.29365258380293324,
+              -0.18269777268594778
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.02216282203593156,
+          "absolute_error": 9.79240020321237e-9
+        },
+        {
+          "axis": 1,
+          "minus": {
+            "name": "fd_axis1_minus",
+            "r_bohr": [
+              3,
+              2.09999,
+              2.3
+            ],
+            "stdin": "3 2.09999 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0201938025332314E-001  -2.2165914617239723E-002  -2.9366534603723393E-001  -1.8270055016682463E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.30201938025332314,
+            "gradient_hartree_per_bohr": [
+              -0.022165914617239723,
+              -0.29366534603723393,
+              -0.18270055016682463
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis1_plus",
+            "r_bohr": [
+              3,
+              2.10001,
+              2.3
+            ],
+            "stdin": "3 2.1000100000000002 2.2999999999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0202524768374700E-001  -2.2159708896757994E-002  -2.9364607185416203E-001  -1.8269682598113535E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.302025247683747,
+            "gradient_hartree_per_bohr": [
+              -0.022159708896757994,
+              -0.293646071854162,
+              -0.18269682598113535
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.29337152119279786,
+          "absolute_error": 0.0002841659892946491
+        },
+        {
+          "axis": 2,
+          "minus": {
+            "name": "fd_axis2_minus",
+            "r_bohr": [
+              3,
+              2.1,
+              2.2999899999999998
+            ],
+            "stdin": "3 2.1000000000000001 2.2999899999999998\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0202048412065030E-001  -2.2163721005263908E-002  -2.9365754266948008E-001  -1.8270539277122541E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.3020204841206503,
+            "gradient_hartree_per_bohr": [
+              -0.022163721005263908,
+              -0.2936575426694801,
+              -0.1827053927712254
+            ],
+            "valid_result": true
+          },
+          "plus": {
+            "name": "fd_axis2_plus",
+            "r_bohr": [
+              3,
+              2.1,
+              2.30001
+            ],
+            "stdin": "3 2.1000000000000001 2.3000099999999999\n",
+            "returncode": 0,
+            "stdout": "RESULT  -3.0202413810506679E-001  -2.2161903473173206E-002  -2.9365383178212690E-001  -1.8269197027124018E-001\nFINITE T T T T\n",
+            "stderr": "",
+            "finite": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "energy_hartree": -0.3020241381050668,
+            "gradient_hartree_per_bohr": [
+              -0.022161903473173206,
+              -0.2936538317821269,
+              -0.18269197027124018
+            ],
+            "valid_result": true
+          },
+          "finite_difference": -0.18269922082425613,
+          "absolute_error": 5.393495877414889e-7
+        }
+      ]
+    }
+  ]
+}

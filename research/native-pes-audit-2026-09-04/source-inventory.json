@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-04",
+  "scope": "Native runtime audit of pinned upstream sources; not a new literature review.",
+  "skill_used": "Exa Search",
+  "skill_effect": "Fetched official micromamba installation guidance and selected an isolated root prefix without shell initialization.",
+  "setup_source": {
+    "url": "https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html",
+    "access": "Exa web fetch"
+  },
+  "primary_sources": [
+    {
+      "url": "https://github.com/MMunibas/CO2-PESs/tree/020c61d365f2f1c3ac44644378901ba0ab3c9406",
+      "access": "Pinned codeload archive, local source inspection and native execution"
+    },
+    {
+      "url": "https://github.com/MMunibas/RKHS/tree/a392786bd3575dec6ae63b485112a40b20b5d1a8",
+      "access": "Pinned codeload archive, local source inspection and native execution"
+    }
+  ],
+  "additional_checks": [
+    "GitHub read-only commit history for RKHS README.md, multidimensional-grid.csv, src/example.f90, src/RKHS.f90; did not establish cause of README golden-value mismatch."
+  ],
+  "not_established": [
+    "README mismatch root cause",
+    "Cross-compiler or Linux reproduction",
+    "Paper's original binaries or compiler flags",
+    "Accuracy against original ab initio points",
+    "Neutral CO2 VUV yield or quantum-dynamical path"
+  ]
+}
